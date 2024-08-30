@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function Buttons() {
   return (
@@ -7,10 +8,10 @@ export default function Buttons() {
             <p className="description">
             Start Protecting Your Data Now – Sign Up Today!
             </p>
-            <div className="button">
-              <p className="buttonText">
+            <div className="homeButton">
+            <Link className="buttonText" to="/main/authenticate"> 
                 User
-              </p>
+              </Link>
             </div>
         </div>
 
@@ -18,10 +19,10 @@ export default function Buttons() {
             <p className="description">
             Manage Your Compliance Effortlessly – Login to Your Dashboard
             </p>
-            <div className="button">
-              <p className="buttonText">
+            <div className="homeButton">
+            <Link className="buttonText" to="/admin/authenticate">
                 Admin
-              </p>
+              </Link>
             </div>
         </div>
     </div>

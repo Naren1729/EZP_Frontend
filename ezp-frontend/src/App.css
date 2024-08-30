@@ -96,29 +96,122 @@
   color: #cdc5cf;
 }
 
-.button {
+.homeButton {
   background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
   height: 41px;
   width: 104px;
   color: rgb(46, 45, 45);
   border-radius: 7px;
-  text-align: center;
   transition: background 0.45s ease, transform 0.3s ease;
 }
 
-.button:hover {
+.homeButton:hover {
   background: linear-gradient(to right, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
   transform: scale(1.05);
 }
 
-.buttonText {
-  font-size: 16px;
-  margin-top: 7px;
+.homeButton a{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-decoration: none;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-left: 27px;
   cursor: pointer;
   transition: color 0.3s ease;
+  position: absolute;
 }
 
-.buttonText:hover {
+.homeButton a:hover {
   color: rgb(46, 45, 45);
 }
 
+/* ------------------- User Login Page ---------------------- */
+
+.loginContainer{
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+.leftDiv{
+  background-color: #545055;
+ height: 45.5rem;
+ width: 40rem;
+}
+
+.leftDiv img{
+  height: 590px;
+    margin-top: 50px;
+    margin-left: 25px;
+}
+
+/*------------------- Login Component ----------------------------*/
+
+
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  margin: 66px auto;
+  padding: 20px;
+  border-radius: 25px;
+  border: 2px solid grey;
+  height: 35rem;
+}
+
+.login-form-container p{
+  font-size: 35px;
+  font-weight: bold;
+  color: #cdc5cf;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 24px;
+  color: #d9e5ff;
+}
+
+input {
+  background-color: #545055;
+  width: 20rem;
+  height: 55px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 15px;
+  color: #cdc5cf;
+  font-weight: bold;
+}
+
+input::placeholder{
+  color: #bcbcbc;
+  font-size: 15px;
+}
+
+button {
+  width: 20rem;
+  height: 55px;
+  padding: 10px;
+  background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
+  color: rgb(46, 45, 45);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 40px;
+  transition: background 0.6s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(to right, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
+  transform: scale(1.02);
+}

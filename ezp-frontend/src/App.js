@@ -1,12 +1,20 @@
 import './App.css';
-import Hero from './Components/Hero';
-import Buttons from './Components/Buttons';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import Home from './Pages/Home';
+import UserLogin from './Pages/UserLogin';
+import AdminLogin from './Pages/AdminLogin'
+
+//Creating an array of object
+const routerConfig = createBrowserRouter([
+    {path:"/", element:<Home/> },
+    {path: "/main/authenticate", element:<UserLogin/> },
+    {path: "/admin/authenticate", element:<AdminLogin/> }
+  ]); 
 
 function App() {
   return (
     <>
-      <Hero/>
-      <Buttons/>
+      <RouterProvider router={routerConfig} />
     </>
   );
 }
