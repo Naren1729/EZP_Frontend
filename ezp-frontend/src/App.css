@@ -22,12 +22,14 @@
   /* background-color: #a4e7f1;
   /* color: #dee2e6; 
   color: rgb(55 105 162); */
-  background-color: #14024d;
+  /* background-color: #14024d; */
+  background-color: #35024d;
   margin-top: 50px;
 }
 
 .heading{
-  color: rgb(61 223 220);
+  /* color: rgb(61 223 220); */
+  color: rgb(172 120 196);
   font-size: 90px;
   margin-top: 0;
   margin-bottom: -26px;
