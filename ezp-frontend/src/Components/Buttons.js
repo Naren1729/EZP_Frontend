@@ -5,7 +5,7 @@ export default function Buttons() {
     <div className='buttons'>
         <div className="buttonContainer">
             <p className="description">
-            "Start Protecting Your Data Now – Sign Up Today!"
+            Start Protecting Your Data Now – Sign Up Today!
             </p>
             <div className="button">
               <p className="buttonText">

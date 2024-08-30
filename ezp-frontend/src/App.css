@@ -23,13 +23,13 @@
   /* color: #dee2e6; 
   color: rgb(55 105 162); */
   /* background-color: #14024d; */
-  background-color: #35024d;
+  background-color: #545055;
   margin-top: 50px;
 }
 
 .heading{
   /* color: rgb(61 223 220); */
-  color: rgb(172 120 196);
+  color: rgb(247 247 247);
   font-size: 90px;
   margin-top: 0;
   margin-bottom: -26px;
@@ -38,7 +38,7 @@
 }
 
 .heading2{
-  color: rgb(247, 183, 51);
+  color: rgb(18, 20, 20);
   /* color: rgb(204 235 246); */
   font-size: 42px;
   margin-top: 0;
@@ -48,7 +48,7 @@
 }
 
 .heading3{
-  color: rgb(104 172 186);
+  color: rgb(18, 20, 20);
   font-size: 62px;
   margin-top: 0;
   margin-bottom: 0;
@@ -75,12 +75,12 @@
   align-items: center;
 }
 
-.buttonContainer{
+.buttonContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #293e4f52;
-  border: 3px solid rgb(247, 183, 51);
+  background-color: #54505599;
+  border: 3px solid rgb(76 73 77);
   border-radius: 15px;
   width: 40rem;
   height: 10rem;
@@ -93,21 +93,21 @@
 
 .description{
   font-size: 19px;
-  color: #f7b733;
+  color: #cdc5cf;
 }
 
 .button {
-  background: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+  background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
   height: 41px;
   width: 104px;
-  color: white;
+  color: rgb(46, 45, 45);
   border-radius: 7px;
   text-align: center;
   transition: background 0.45s ease, transform 0.3s ease;
 }
 
 .button:hover {
-  background: linear-gradient(to right, #f9d423 0%, #f83600 100%);
+  background: linear-gradient(to right, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
   transform: scale(1.05);
 }
 
@@ -119,6 +119,6 @@
 }
 
 .buttonText:hover {
-  color: #f9d423;
+  color: rgb(46, 45, 45);
 }
 
