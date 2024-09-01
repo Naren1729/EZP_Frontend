@@ -215,3 +215,94 @@ button:hover {
   background: linear-gradient(to right, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
   transform: scale(1.02);
 }
+
+/* ----------------------- User Form ------------------------------------ */
+
+.user-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.userForm_Img1{
+  height: 450px;
+}
+
+
+.left-container, 
+.middle-container, 
+.right-container {
+  flex: 1; /* Ensures that each container takes up an equal share of the space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px; /* Optional padding for spacing within each container */
+}
+
+.user-form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 25px;
+  border: 2px solid grey;
+  height: 38rem;
+  background: linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%);
+}
+
+.user-form-container p{
+  font-size: 25px;
+  font-weight: bold;
+  color: #f3ecf4;
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radio-option input[type="radio"] {
+  accent-color: #cdc5cf;
+  width: 20px;
+  height: 20px;
+  margin-top: -5px;
+}
+
+.radio-option label {
+  font-size: 18px;
+  color: #d9e5ff;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+/* ----------------------------- Admin Access Page ---------------------------- */
+
+.admin-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.subContainer{
+  width: 26rem;
+    height: 10rem;
+    border: 2px solid grey;
+    border-radius: 15px;
+    margin: 50px auto;
+    background:  linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%);
+    align-items: center;
+}
+.subContainer p{
+  font-size: 20px;
+  font-weight: bold;
+  align-self: center;
+}
