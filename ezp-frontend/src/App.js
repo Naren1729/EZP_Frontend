@@ -7,11 +7,13 @@ import UserForm from './Pages/UserForm';
 import AdminAccess from './Pages/AdminAccess';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css"
+import FetchingData from './Pages/FetchingData';
 
 //Creating an array of object
 const routerConfig = createBrowserRouter([
     {path:"/", element:<Home/> },
     {path: "/main/authenticate", element:<UserLogin/> },
+    {path: "/admin/data", element:<FetchingData/>},
     {path: "/admin/authenticate", element:<AdminLogin/> },
     {path: "/main/userForm", element:<UserForm/> },
     {path: "/admin/adminAccess", element:<AdminAccess/> },
