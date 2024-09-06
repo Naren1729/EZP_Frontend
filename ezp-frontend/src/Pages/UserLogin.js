@@ -1,5 +1,6 @@
 import React from 'react'
 import Login from '../Components/Login'
+import { Link } from 'react-router-dom'
 
 export default function UserLogin() {
   return (
@@ -8,7 +9,10 @@ export default function UserLogin() {
       <div className="leftDiv">
         <img src="/User-Login.png" alt="" sizes="" srcset="" />
       </div>
-      <Login title = "User"/>
+      <div className="rightDiv">
+        <Login title = "User"/>
+        <Link to="/main/userDepositForm" className='depositFunds'>Deposit Funds!</Link>
+      </div>
     </div>
     </>
   )

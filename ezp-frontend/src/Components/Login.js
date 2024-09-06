@@ -11,7 +11,7 @@ export default function Login(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:9090/main/authenticate", {
+    const response = await fetch("http://localhost:9090/api/authenticate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

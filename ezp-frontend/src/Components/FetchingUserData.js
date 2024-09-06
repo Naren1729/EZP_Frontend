@@ -1,32 +1,51 @@
 import React, { useEffect, useState } from 'react';
 
 export default function FetchingUserData() {
-  const [data, setData] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const getUserData = async () => {
-    try {
-      let response = await fetch("http://localhost:9090/main/users", { method: "GET" });
-      let json = await response.json();
-      setData(json);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setError("Failed to load data");
-    }
-  };
+  const url = "http://localhost:9090/api/users";
 
   useEffect(() => {
-    getUserData();
+    const fetchUsers = async () => {
+      try {
+        let response = await fetch(url, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        let data = await response.json();
+        setUsers(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div>
-      <h1>Data from backend:</h1>
+      <h1>All Users:</h1>
       {error ? (
         <p>{error}</p>
       ) : (
         <div className="user-container">
-          {data.map((transaction, index) => (
+          {users.map((transaction, index) => (
           
             <div className="user-subContainer">
                 <p> <strong>Transaction ID:</strong> {transaction.transaction_id} </p>
