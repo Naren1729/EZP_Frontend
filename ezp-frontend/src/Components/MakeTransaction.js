@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const MakeTransaction = () => {
+  const navigate = useNavigate();
   const [amount, setAmount] = useState(0);
   const [userID, setUserID] = useState("");
   const [destinationUserID, setDestinationUserID] = useState("");
@@ -43,8 +46,20 @@ const MakeTransaction = () => {
         setDestinationUserID("");
         setType("deposit");
         setTransactionPassword("");
+        if (response.status === 201) {
+          toast.success("Logged in successfully", {
+            position: "top-right",
+            style: { width: "400px", height: "60px" },
+          });
+        } else {
+          toast.error("Invalid Username or Password", {
+            position: "top-right",
+            style: { width: "400px", height: "60px" },
+          });
+        }
       }
-    } catch (error) {
+    }
+    catch (error) {
       setError("Network error");
       setStatus("Failed");
     }

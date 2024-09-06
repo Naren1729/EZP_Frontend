@@ -13,7 +13,7 @@ export default function Home() {
         <Hero/>
         <Buttons/>
 
-        <section id="about">
+        {/* <section id="about">
           <About/>
         </section>
         <section id="features">
@@ -21,7 +21,7 @@ export default function Home() {
         </section>
         <section id="team">
           <Team/>
-        </section>
+        </section> */}
     </>
   )
 }

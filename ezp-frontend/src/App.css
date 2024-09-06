@@ -270,6 +270,7 @@ button {
   font-size: 16px;
   margin-top: 40px;
   transition: background 0.6s ease, transform 0.3s ease;
+  margin: 41px auto;
 }
 
 button:hover {
@@ -305,13 +306,13 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 500px;
+  width: 650px;
   margin: 40px auto;
   padding: 20px;
   border-radius: 25px;
   border: 2px solid grey;
-  height: 38rem;
-  background: linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%);
+  height: 60rem;
+  /* background: linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%); */
 }
 
 .user-form-container p{
@@ -348,25 +349,6 @@ button:hover {
 
 /* ----------------------------- User Deposit Form -------------------------------------- */
 
-/* .deposit-funds-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-}
-
-.deposit-funds-form{
-  border: 2px solid grey;
-  height: 40rem;
-  width: 60rem;
-  border-radius: 25px;
-  margin: 40px auto;
-}
-
-.deposit-form-group{
-  margin-top: 10px;
-} */
-
 .deposit-funds-container {
   padding: 20px;
   border-radius: 25px;
@@ -388,13 +370,13 @@ button:hover {
 }
 
 .form-label {
-  width: 150px;
-  font-weight: bold;
-  color: #6fa8e2;
-  text-align: right;
-  margin-right: 20px;
-  font-size: 21px;
-  margin-bottom: 23px;
+  width: 170px;
+    font-weight: bold;
+    color: #f3ecf4;
+    text-align: right;
+    margin-right: 20px;
+    font-size: 21px;
+    margin-bottom: 23px;
 }
 
 .form-input, .form-select {
@@ -434,16 +416,23 @@ button:hover {
   align-items: center;
   justify-content: center;
 }
+
 .subContainer{
   width: 26rem;
     height: 6rem;
-    border: 2px solid grey;
+    border: 2px solid rgb(53, 52, 52);
     border-radius: 15px;
     margin: 50px auto;
-    background:  linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%);
+    /* background: linear-gradient(-180deg, rgba(255, 255, 255, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%); */
     align-items: center;
     font-size: 23px;
     cursor: pointer;
+    /* background: linear-gradient(72.5deg, rgb(9, 129, 185) 27.9%, rgb(144, 218, 228) 84.2%); */
+    /* background: linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%); */
+    /* color: #081545; */
+
+    color: #f3ecf4;
+    background: #636364;
 }
 .subContainer p{
   font-size: 20px;
@@ -451,21 +440,117 @@ button:hover {
   align-self: center;
 }
 
-/* ------------------------- Fetching User Data ------------------------------ */
-
-.user-container{
-  display: flex;
-  flex-direction: row;
+.admin-display-container{
+  border: 2px solid grey;
+  width: 78rem;
+  border-radius: 25px;
+  margin: 68px auto;
 }
 
-.user-subContainer{
+/* ------------------------- Fetching User Data ------------------------------ */
+
+.get-data-container {
+  position: relative;
+  width: 1150px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+
+.get-data-title{
+  color: #f3ecf4;
+}
+
+.user-data-label{
+  color: #663399
+}
+
+.get-data-container .card {
+  position: relative;
+  width: 300px;
+  height: 420px;
+  background: #fff;
+  margin: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+  transition: 0.5s;
+}
+
+.card{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 300px;
-  border: 2px solid grey;
-  margin: 50px;
-  border-radius: 25px;
+}
+
+.get-data-container .card:hover {
+  filter: blur(0px);
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.circle{
+  background: linear-gradient(109.6deg, rgb(102, 51, 153) 11.2%, rgb(69, 179, 224) 100.1%);
+
+  /* background: linear-gradient(-180deg, rgba(100, 98, 98, 0.5) 20%, rgba(0,0,0,0.50) 70%); */
+}
+
+.get-data-container .card .circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* background: grey; */
+  clip-path: circle(180px at center 0);
+  text-align: center;
+}
+
+.get-data-container .card .circle h2 {
+  color: #fff;
+  font-size: 4.5em;
+  padding: 30px 0;
+  margin-top: 0;
+}
+
+.get-data-container .card .content {
+  position: absolute;
+  bottom: 10px;
+  padding: 20px;
+  page-break-after: 20px;
+  text-align: center;
+}
+
+.get-data-container .card .content p {
+  color: #363535;
+  font-weight: bold;
+}
+
+.circle.success {
+  background: linear-gradient(-180deg, rgba(34, 139, 34, 0.7) 20%, rgba(0, 128, 0, 0.7) 70%);
+}
+
+.circle.failed {
+  background: linear-gradient(-180deg, rgba(255, 0, 0, 0.7) 20%, rgba(139, 0, 0, 0.7) 70%);
+}
+
+.lower-button{
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  background: #fa2c2c;
+  color: #fff;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.lower-button.success{
+  background: linear-gradient(-180deg, rgba(34, 139, 34, 0.7) 20%, rgba(0, 128, 0, 0.7) 70%);
+}
+.lower-button.failed{
+  background: #fa2c2c;
 }

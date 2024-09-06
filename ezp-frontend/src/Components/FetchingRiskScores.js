@@ -40,13 +40,19 @@ export default function FetchingRiskScores() {
 
 
   return (
-    <div>
-      <h2>All Fraud Transactions</h2>
-      <ul>
+    <div className='get-data-container'>
+      <h1 className='get-data-title'>All Fraud Transactions</h1>
+      <ul className='get-data-container'>
         {fraudTransactions.map((transaction) => (
-          <li key={transaction.fraudID}>
-            {transaction.fraudID} - {transaction.transaction.amount} -{" "}
-            {transaction.transaction.usernId}-{transaction.riskScore}
+          <li key={transaction.fraudID} className="card risk">
+            <div className={`circle ${transaction.transactionStatus === 'Success' ? 'success' : 'failed'}`}>
+                <h2>{transaction.fraudID}</h2>
+              </div>
+              <div class="content">
+                <p>User Id: <strong className='user-data-label'>{transaction.transaction.usernId}</strong> </p>
+                <p>Transaction Amount: <strong className='user-data-label'> {transaction.transaction.amount}</strong></p>
+                <p style={{"color":"white"}} className="lower-button">Risk Score {transaction.riskScore}</p>
+             </div>
           </li>
         ))}
       </ul>

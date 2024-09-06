@@ -39,13 +39,21 @@ export default function FetchingTransactionDetails() {
   }
 
   return (
-    <div>
-      <h2>All Transactions</h2>
-      <ul>
+    <div className='get-data-container'>
+      <h1 className='get-data-title'>All Transactions:</h1>
+      <ul className="get-data-container">
         {transactions.map((transaction) => (
-          <li key={transaction.transactionId}>
-            {transaction.transactionId} - {transaction.amount} -{" "}
-            {transaction.usernId}
+          <li key={transaction.transactionId} className="card">
+            <div className={`circle ${transaction.transactionStatus === 'Success' ? 'success' : 'failed'}`}>
+                <h2>{transaction.transactionId}</h2>
+              </div>
+              <div class="content">
+                <p>User Id: <strong className='user-data-label'>{transaction.usernId}</strong> </p>
+                <p>Destination User Id: <strong className='user-data-label'> {transaction.destinationUserId}</strong></p>
+                <p>Transaction Type: <strong className='user-data-label'> {transaction.transactionType}</strong></p>
+                <p>Amount: <strong className='user-data-label'>{transaction.amount}</strong> </p>
+                <span className={`lower-button ${transaction.transactionStatus === 'Success' ? 'success' : 'failed'}`}>Status: {transaction.transactionStatus} </span>
+             </div>
           </li>
         ))}
       </ul>

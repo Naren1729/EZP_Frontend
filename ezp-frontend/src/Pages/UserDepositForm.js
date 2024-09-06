@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function UserDepositForm() {
+  const navigate = useNavigate();
 
     const [username, setUsername] = useState("");
   const [name, setName] = useState("");
@@ -46,13 +49,26 @@ export default function UserDepositForm() {
       setCurrentBalance(0);
       setIsBlockListed(false);
       setTransactionPassword("");
+
+      if (response.status === 201) {
+        toast.success("Signed up successfully", {
+          position: "top-right",
+          style: { width: "400px", height: "60px" },
+        });
+        navigate("/main/authenticate");
+      } else {
+        toast.error("Invalid Username or Password", {
+          position: "top-right",
+          style: { width: "400px", height: "60px" },
+        });
+      }
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
     }
   };
 
   return (
-    <div className="deposit-funds-container">
+    <div className="user-form-container">
   <form className="deposit-funds-form" onSubmit={handleSubmit}>
     <div className="deposit-form-group">
       <label htmlFor="username" className="form-label">Username</label>
@@ -100,7 +116,7 @@ export default function UserDepositForm() {
       />
     </div>
     <div className="deposit-form-group">
-      <label htmlFor="currentBalance" className="form-label">Current Balance</label>
+      <label htmlFor="currentBalance" className="form-label" placeholder="100000">Current Balance</label>
       <input
         id="currentBalance"
         value={currentBalance}
@@ -133,7 +149,7 @@ export default function UserDepositForm() {
         placeholder="Transaction Password"
       />
     </div>
-    <button type="submit" className="submit-button">Submit</button>
+    <button type="submit" className="userDepositForm-button">Submit</button>
   </form>
 </div>
 
