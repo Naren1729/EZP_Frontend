@@ -11,7 +11,7 @@ export default function UserLogin() {
       </div>
       <div className="rightDiv">
         <Login title = "User"/>
-        <Link to="/main/userDepositForm" className='depositFunds'>Deposit Funds!</Link>
+        <Link to="/main/userDepositForm" className='depositFunds'>Sign up</Link>
       </div>
     </div>
     </>

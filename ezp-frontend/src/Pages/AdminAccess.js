@@ -43,7 +43,10 @@ export default function AdminAccess() {
           onClick={() => setActiveComponent("transactionDetails")}
         />
       </div>
-      {renderComponent()}
+      <div className="admin-display-container">
+        {renderComponent()}
+      </div>
+      
     </>
   );
 }

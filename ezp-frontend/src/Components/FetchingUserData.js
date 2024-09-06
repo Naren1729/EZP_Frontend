@@ -39,22 +39,24 @@ export default function FetchingUserData() {
   }
 
   return (
-    <div>
-      <h1>All Users:</h1>
+    <div className='get-data-container'>
+      <h1 className='get-data-title'>All Users:</h1>
       {error ? (
         <p>{error}</p>
       ) : (
-        <div className="user-container">
+        <div className="get-data-container">
           {users.map((transaction, index) => (
           
-            <div className="user-subContainer">
-                <p> <strong>Transaction ID:</strong> {transaction.transaction_id} </p>
-                <p><strong>Username:</strong> {transaction.username}</p>
-                <p><strong>Password:</strong> {transaction.password}</p>
-                <p><strong>Email:</strong> {new Date(transaction.email).toLocaleString()}</p>
-                <p><strong>Current Balance:</strong> {transaction.currentBalance}</p>
-                {/* <p><strong>Amount:</strong> ${Number(transaction.amount).toFixed(2)}</p>
-                <p><strong>Status:</strong> {transaction.status}</p> */}
+            <div className="card">
+              <div class="circle">
+                <h2>{transaction.id}</h2>
+              </div>
+              <div class="content">
+                <p>Username:<strong className='user-data-label'>{transaction.username}</strong> </p>
+                <p>Password:<strong className='user-data-label'> {transaction.password}</strong></p>
+                <p>Email:<strong className='user-data-label'> {transaction.email}</strong></p>
+                <p>Current Balance:<strong className='user-data-label'>{transaction.currentBalance}</strong> </p>
+             </div>
             </div>
           ))}
         </div>
