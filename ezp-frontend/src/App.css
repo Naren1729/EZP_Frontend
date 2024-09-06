@@ -6,6 +6,47 @@
   font-style: normal;
 }
 
+/* ------------------------------- NavBar -------------------------------------- */
+/* Basic navbar container */
+.nav-bar {
+  background-color: #1a1919;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Styling for the nav items */
+.nav-items {
+  list-style: none;
+  margin-top: 10px;
+  margin-bottom: -10px;
+  padding: 10px 60px;
+  display: flex;
+  gap: 40px;
+}
+
+.nav-items li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-items li a:hover {
+  color: #4CAF50;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+
 /* .heading-gradient {
   background: linear-gradient(90deg, #f03f24, #ecab60);
   -webkit-background-clip: text;
@@ -62,7 +103,7 @@
 
 .right img{
   margin-top: 30px;
-  margin-left: 10px;
+  margin-left: 5px;
   height: 350px;
 }
 
@@ -143,6 +184,26 @@
   height: 590px;
     margin-top: 50px;
     margin-left: 25px;
+}
+
+.rightDiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60rem;
+  margin-top: -80px;
+}
+
+.depositFunds{
+  color: #b2deeb;
+  margin-top: -137px;
+  text-decoration: none;
+}
+.depositFunds:hover{
+  color: #40c2ea;
+  margin-top: -137px;
+  text-decoration: none;
 }
 
 /*------------------- Login Component ----------------------------*/
@@ -282,6 +343,87 @@ button:hover {
   color: #d9e5ff;
   font-weight: bold;
   margin-top: 4px;
+}
+
+
+/* ----------------------------- User Deposit Form -------------------------------------- */
+
+/* .deposit-funds-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.deposit-funds-form{
+  border: 2px solid grey;
+  height: 40rem;
+  width: 60rem;
+  border-radius: 25px;
+  margin: 40px auto;
+}
+
+.deposit-form-group{
+  margin-top: 10px;
+} */
+
+.deposit-funds-container {
+  padding: 20px;
+  border-radius: 25px;
+  border: 2px solid grey;
+  width: 60rem;
+  margin: 60px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.deposit-funds-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.deposit-form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-label {
+  width: 150px;
+  font-weight: bold;
+  color: #6fa8e2;
+  text-align: right;
+  margin-right: 20px;
+  font-size: 21px;
+  margin-bottom: 23px;
+}
+
+.form-input, .form-select {
+  background-color: #2c2a2c;
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  margin: 20px;
+}
+
+.form-input:focus, .form-select:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
 }
 
 /* ----------------------------- Admin Access Page ---------------------------- */

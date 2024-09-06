@@ -7,6 +7,7 @@ import UserForm from './Pages/UserForm';
 import AdminAccess from './Pages/AdminAccess';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css"
+import UserDepositForm from './Pages/UserDepositForm';
 // import FetchingUserData from './Pages/FetchingUserData';
 
 //Creating an array of object
@@ -17,6 +18,7 @@ const routerConfig = createBrowserRouter([
     {path: "/admin/authenticate", element:<AdminLogin/> },
     {path: "/main/userForm", element:<UserForm/> },
     {path: "/admin/adminAccess", element:<AdminAccess/> },
+    {path: "/main/userDepositForm", element:<UserDepositForm/> },
   ]); 
 
 function App() {
