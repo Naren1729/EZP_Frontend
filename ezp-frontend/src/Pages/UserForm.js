@@ -14,7 +14,6 @@ export default function UserForm() {
   const [status, setStatus] = useState("");
   const [error, setError] = useState(null);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const transactionData = {
@@ -61,8 +60,7 @@ export default function UserForm() {
           });
         }
       }
-    }
-    catch (error) {
+    } catch (error) {
       setError("Network error");
       setStatus("Failed");
     }
@@ -84,8 +82,7 @@ export default function UserForm() {
           <div className="user-form-container">
             <p>Enter your transaction details</p>
             <form onSubmit={handleSubmit}>
-              <div>
-        </div>
+              <div></div>
               <div className="form-group">
                 <label htmlFor="name">Amount</label>
                 <input
@@ -142,47 +139,26 @@ export default function UserForm() {
               </div>
               <div className="form-group">
                 <label htmlFor="name">Transaction Password</label>
-                  <input
+                <input
                   value={transactionPassword}
                   onChange={(e) => setTransactionPassword(e.target.value)}
                   type="password"
                   placeholder="Transaction Password"
-                  />
+                />
               </div>
 
-              {/* <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Name"
-                  // ref={userNameRef}
-                  required
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="amount">Amount</label>
-                <input
-                  type="text"
-                  id="amount"
-                  name="amount"
-                  placeholder="Amount"
-                  // ref={userNameRef}
-                  required
-                />
-              </div> */}
               <button type="submit">Submit</button>
             </form>
           </div>
         </div>
 
         <div className="right-container">
-          <img className="userForm_Img1"
+          <img
+            className="userForm_Img1"
             src="/userForm1.png"
             alt=""
-            srcset=""/>
+            srcset=""
+          />
         </div>
       </div>
     </>
