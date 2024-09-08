@@ -554,3 +554,169 @@ button:hover {
 .lower-button.failed{
   background: #fa2c2c;
 }
+
+
+/* ------------------------- About.js ------------------------------ */
+.carousel-container {
+  background-color: #545055;
+  width: 80%;
+  height: 450px;
+  max-width: 1300px; /* Increase max-width for larger carousel */
+  margin: 200px auto 0; /* Add 200px top margin */
+  position: relative; /* Ensure the container is positioned relative for positioning arrows */
+  text-align: center; /* Center text horizontally */
+}
+
+.carousel-container h1 {
+  font-size: 2.5rem; /* Adjust font size as needed */
+  color: white; /* Set text color */
+  margin-bottom: 0px; /* Reduce space below the heading */
+  padding-top: 10px;
+}
+
+.carousel-items-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  background-color: #6a6a6a; /* Slightly different color for the items container */
+  padding: 0px 20px 20px; /* Padding around the items */
+  width: 90%;
+  border-radius: 200px; /* Rounded corners for the container */
+}
+
+.carousel-item {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 40px 40px; /* Increase padding */
+  font-size: 1.2rem; /* Increase font size */
+}
+
+.carousel-item i {
+  font-size: 4rem; /* Increase icon size */
+  margin-bottom: 20px; /* Increase space below icon */
+}
+
+.carousel-item h5 {
+  font-size: 1.5rem; /* Increase heading size */
+  margin-bottom: 0px; /* Adjust spacing below heading */
+}
+
+.carousel-item p {
+  font-size: 1.2rem; /* Increase paragraph text size */
+}
+
+/* Style for carousel arrows */
+.carousel .control-prev, .carousel .control-next {
+  background-color: rgba(0, 0, 0, 0.5); /* Add background color to arrows */
+  color: white; /* Arrow color */
+  border-radius: 50%; /* Round shape */
+  width: 40px; /* Size of arrows */
+  height: 40px; /* Size of arrows */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem; /* Arrow icon size */
+  position: absolute; /* Position absolutely within the container */
+  top: calc(50% + 150px); /* Bring arrows down by 150px from the center */
+  transform: translateY(-50%) translateY(150px); /* Adjust vertical positioning */
+}
+
+.carousel .control-prev {
+  left: 10px; /* Position left arrow */
+}
+
+.carousel .control-next {
+  right: 10px; /* Position right arrow */
+}
+/* ------------------------- Team.js ------------------------------ */
+.team-container {
+  background-color: #545055; /* Same color as the heading container */
+  width: 80%;
+  max-width: 1300px; /* Match the max-width of the carousel container */
+  margin: 200px auto; /* Adjust margin as needed */
+  padding: 40px; /* Add padding for spacing */
+  border-radius: 10px; /* Rounded corners */
+  text-align: center; /* Center text and images */
+}
+
+.team-title {
+  font-size: 2.5rem; /* Adjust font size as needed */
+  color: white; /* Set text color */
+  margin-bottom: 40px; /* Add space below the title */
+}
+
+.team-members {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping of items */
+  justify-content: center; /* Center items horizontally */
+  gap: 20px; /* Space between items */
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.team-member img {
+  width: 100px; /* Size of the circle photo */
+  height: 100px; /* Size of the circle photo */
+  border-radius: 50%; /* Make the image a circle */
+  object-fit: cover; /* Ensure image covers the circle */
+  border: 3px solid white; /* Border around the circle photo */
+  margin-bottom: 10px; /* Space below the photo */
+}
+
+.team-member h5 {
+  font-size: 1.2rem; /* Font size for names */
+  color: white; /* Set text color */
+  margin: 0; /* Remove default margin */
+}
+/* ------------------------- Features.js ------------------------------ */
+.features-container {
+  margin-top: 200px;
+  background-color: #545055;
+  padding: 40px; /* Padding inside the container */
+  border-radius: 10px; /* Rounded corners */
+  text-align: center; /* Center align text */
+  color: white; /* Set text color to white */
+}
+
+.features-container h1 {
+  font-size: 2.5rem; /* Font size for the title */
+  margin-bottom: 20px; /* Space below the title */
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid layout */
+  gap: 20px; /* Space between grid items */
+}
+
+.feature-item {
+  background: #fff; /* White background for feature items */
+  padding: 20px; /* Padding inside feature items */
+  border-radius: 10px; /* Rounded corners */
+  color: #333; /* Text color for feature items */
+}
+
+.feature-item i {
+  font-size: 3rem; /* Size of icons */
+  margin-bottom: 10px; /* Space below the icon */
+  color: #7a60ff; /* Icon color matching the container */
+}
+
+.feature-item h3 {
+  font-size: 1.5rem; /* Font size for headings */
+  margin-bottom: 10px; /* Space below the heading */
+}
+
+.feature-item p {
+  font-size: 1rem; /* Font size for paragraphs */
+}
