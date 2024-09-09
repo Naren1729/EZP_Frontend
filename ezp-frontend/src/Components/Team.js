@@ -7,7 +7,7 @@ const teamMembers = [
   { id: 2, name: "Bhavansh Gali", photo: "Bhavansh.jpeg" },
   { id: 3, name: "Naren Sri Sai", photo: "Naren.jpeg" },
   { id: 4, name: "Keerthana B", photo: "Keerthana.jpeg" },
-  { id: 5, name: "Arvind Kumar", photo: "path/to/photo5.jpg" },
+  { id: 5, name: "Arvind Kumar", photo: "Aravind.jpg" },
 ];
 
 export default function Team() {
