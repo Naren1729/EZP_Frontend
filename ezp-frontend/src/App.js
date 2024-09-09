@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css"
 import UserDepositForm from './Pages/UserDepositForm';
 import MakeTransaction from './Components/MakeTransaction';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 // import FetchingUserData from './Pages/FetchingUserData';
 
 //Creating an array of object
