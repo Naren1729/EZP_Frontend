@@ -29,37 +29,66 @@ export default function Login(props) {
     console.log("Username:", userNameRef.current.value);
     console.log("Password:", passwordRef.current.value);
 
-    //For user login page
-    if (
-      // Login Failed
-      // Login Successful
-      message === "Login Successful" ||
-      (userNameRef.current.value === "admin123" &&
-        passwordRef.current.value === "EZP123")
-    ) {
-      toast.success("Logged in successfully", {
-        position: "top-right",
-        style: { width: "400px", height: "60px" },
-      });
-      if (userNameRef.current.value === "admin123")
+    if (props.title === "Admin") {
+      if (
+        userNameRef.current.value === "admin123" &&
+        passwordRef.current.value === "EZP123"
+      ) {
+        toast.success("Logged in successfully", {
+          position: "top-right",
+          style: { width: "400px", height: "60px" },
+        });
         navigate("/admin/adminAccess");
-      else navigate("/main/userForm");
-    } else if (message === "Login Failed") {
-      toast.error("Invalid Username or Password", {
-        position: "top-right",
-        style: { width: "400px", height: "60px" },
-      });
+      } else {
+        toast.error("Invalid Username or Password", {
+          position: "top-right",
+          style: { width: "400px", height: "60px" },
+        });
+      }
+    } else if (props.title === "User") {
+      if (message === "Login Successful") {
+        toast.success("Logged in successfully", {
+          position: "top-right",
+          style: { width: "400px", height: "60px" },
+        });
+        navigate("/main/userForm");
+      } else {
+        toast.error("Invalid Username or Password", {
+          position: "top-right",
+          style: { width: "400px", height: "60px" },
+        });
+      }
     }
+
+    // if (
+    //   message === "Login Successful" ||
+    //   (userNameRef.current.value === "admin123" &&
+    //     passwordRef.current.value === "EZP123")
+    // ) {
+    //   //For user login page
+    //   toast.success("Logged in successfully", {
+    //     position: "top-right",
+    //     style: { width: "400px", height: "60px" },
+    //   });
+    //   if (userNameRef.current.value === "admin123")
+    //     navigate("/admin/adminAccess");
+    //   else navigate("/main/userForm");
+    // } else if (message === "Login Failed") {
+    //   toast.error("Invalid Username or Password", {
+    //     position: "top-right",
+    //     style: { width: "400px", height: "60px" },
+    //   });
+    // }
   };
 
   return (
     <>
       <motion.div
-          className="login-form-container"
-          initial={{ x: '8vw' }} // Start off-screen from the left
-          animate={{ x: 0 }}        // Animate to its current position
-          transition={{ type: 'spring', stiffness: 50, damping: 20, duration: 4 }} // Smooth transition
-        >
+        className="login-form-container"
+        initial={{ x: "8vw" }} // Start off-screen from the left
+        animate={{ x: 0 }} // Animate to its current position
+        transition={{ type: "spring", stiffness: 50, damping: 20, duration: 4 }} // Smooth transition
+      >
         <p>Welcome to {props.title} Login</p>
 
         <form onSubmit={handleSubmit}>

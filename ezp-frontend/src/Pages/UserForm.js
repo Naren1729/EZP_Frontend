@@ -48,7 +48,7 @@ export default function UserForm() {
         setDestinationUserID("");
         setType("deposit");
         setTransactionPassword("");
-        if (response.status === 200) {
+        if (json == "Transaction Successful" && response.status === 200) {
           toast.success("Transaction successfull", {
             position: "top-right",
             style: { width: "400px", height: "60px" },
@@ -69,7 +69,7 @@ export default function UserForm() {
 
   return (
     <>
-    <NavBar/>
+      <NavBar />
       <div className="user-container">
         <div className="left-container">
           <img

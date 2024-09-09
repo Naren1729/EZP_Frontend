@@ -11,7 +11,7 @@ export default function NavBar() {
     // After navigation, scroll to the target section
     setTimeout(() => {
       document.getElementById(target).scrollIntoView({ behavior: "smooth" });
-    }, 100); // Delay to ensure routing happens first
+    }, 1000); // Delay to ensure routing happens first
   };
 
   return (
