@@ -1,6 +1,8 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { motion } from 'framer-motion';
+import { fadeIn } from '../variants';
 
 const carouselItems = [
   {
@@ -20,8 +22,20 @@ const carouselItems = [
 export default function About() {
   return (
     <div className="carousel-container">
-      <h1>About Us</h1>
-      <div className="carousel-items-wrapper">
+      <motion.h1
+      
+      variants={fadeIn("right", 0.2)}
+      initial="hidden"
+      whileInView={"show"}
+      viewport={{ once: false, amount: 0.2 }}
+
+      >About Us</motion.h1>
+      <motion.div 
+      variants={fadeIn("left", 0.2)}
+      initial="hidden"
+      whileInView={"show"}
+      viewport={{ once: false, amount: 0.2 }}
+      className="carousel-items-wrapper">
         <Carousel
           showArrows={true}
           autoPlay={true}
@@ -31,14 +45,14 @@ export default function About() {
           transitionTime={500}
         >
           {carouselItems.map(item => (
-            <div key={item.id} className="carousel-item">
+            <motion.div key={item.id} className="carousel-item">
               <i className={item.icon} aria-hidden="true"></i>
               <h5>{item.title}</h5>
               <p>{item.description}</p>
-            </div>
+            </motion.div>
           ))}
         </Carousel>
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -1,23 +1,40 @@
-import React from 'react';
+import React from "react";
+import { motion } from "framer-motion";
+import { fadeIn } from "../variants";
 
 const teamMembers = [
-  { id: 1, name: 'Mayuri Goswami', photo: 'path/to/photo1.jpg' },
-  { id: 2, name: 'Bhavansh Gali', photo: 'path/to/photo2.jpg' },
-  { id: 3, name: 'Naren Sri Sai', photo: 'path/to/photo3.jpg' },
-  { id: 4, name: 'Keerthana B', photo: 'path/to/photo4.jpg' },
-  { id: 5, name: 'Arvind Kumar', photo: 'path/to/photo5.jpg' },
+  { id: 1, name: "Mayuri Goswami", photo: "Mayuri.jpeg" },
+  { id: 2, name: "Bhavansh Gali", photo: "Bhavansh.jpeg" },
+  { id: 3, name: "Naren Sri Sai", photo: "Naren.jpeg" },
+  { id: 4, name: "Keerthana B", photo: "Keerthana.jpeg" },
+  { id: 5, name: "Arvind Kumar", photo: "path/to/photo5.jpg" },
 ];
 
 export default function Team() {
   return (
     <div className="team-container">
-      <h1 className="team-title">Meet Our Team</h1>
+      <motion.h1
+        variants={fadeIn("right", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.2 }}
+        className="team-title"
+      >
+        Meet Our Team
+      </motion.h1>
       <div className="team-members">
-        {teamMembers.map(member => (
-          <div key={member.id} className="team-member">
+        {teamMembers.map((member) => (
+          <motion.div
+            key={member.id}
+            variants={fadeIn("up", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.2 }}
+            className="team-member"
+          >
             <img src={member.photo} alt={member.name} />
             <h5>{member.name}</h5>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

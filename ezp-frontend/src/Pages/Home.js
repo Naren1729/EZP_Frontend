@@ -5,6 +5,7 @@ import NavBar from '../Components/NavBar'
 import About from '../Components/About'
 import Features from '../Components/Features'
 import Team from '../Components/Team'
+import Footer from '../Components/Footer'
 
 export default function Home() {
  return (
@@ -22,6 +23,7 @@ export default function Home() {
         <section id="team">
           <Team/>
         </section>
+        <Footer/>
     </>
   )
 }

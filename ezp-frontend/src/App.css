@@ -32,6 +32,7 @@
 .nav-items li a {
   color: #fff;
   text-decoration: none;
+  cursor: pointer;
   font-size: 16px;
   font-weight: bold;
   transition: color 0.3s ease-in-out;
@@ -42,9 +43,9 @@
 }
 
 /* Smooth scrolling */
-html {
+/* html {
   scroll-behavior: smooth;
-}
+} */
 
 
 /* .heading-gradient {
@@ -558,7 +559,7 @@ button:hover {
 
 /* ------------------------- About.js ------------------------------ */
 .carousel-container {
-  background-color: #545055;
+  /* background-color: #545055; */
   width: 80%;
   height: 450px;
   max-width: 1300px; /* Increase max-width for larger carousel */
@@ -568,9 +569,9 @@ button:hover {
 }
 
 .carousel-container h1 {
-  font-size: 2.5rem; /* Adjust font size as needed */
-  color: white; /* Set text color */
-  margin-bottom: 0px; /* Reduce space below the heading */
+  font-size: 2.5rem;
+  color: #cdc3ca;
+  margin-bottom: 50px;
   padding-top: 10px;
 }
 
@@ -578,7 +579,8 @@ button:hover {
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
-  background-color: #6a6a6a; /* Slightly different color for the items container */
+  background-color: #3c393d; /* Slightly different color for the items container */
+  /* background-color: #6a6a6a; Slightly different color for the items container */
   padding: 0px 20px 20px; /* Padding around the items */
   width: 90%;
   border-radius: 200px; /* Rounded corners for the container */
@@ -598,15 +600,18 @@ button:hover {
 .carousel-item i {
   font-size: 4rem; /* Increase icon size */
   margin-bottom: 20px; /* Increase space below icon */
+  color: #7a60ff;
 }
 
 .carousel-item h5 {
   font-size: 1.5rem; /* Increase heading size */
   margin-bottom: 0px; /* Adjust spacing below heading */
+  margin-top: 5px;
 }
 
 .carousel-item p {
   font-size: 1.2rem; /* Increase paragraph text size */
+  color: #cdc5cf;
 }
 
 /* Style for carousel arrows */
@@ -632,60 +637,18 @@ button:hover {
 .carousel .control-next {
   right: 10px; /* Position right arrow */
 }
-/* ------------------------- Team.js ------------------------------ */
-.team-container {
-  background-color: #545055; /* Same color as the heading container */
-  width: 80%;
-  max-width: 1300px; /* Match the max-width of the carousel container */
-  margin: 200px auto; /* Adjust margin as needed */
-  padding: 40px; /* Add padding for spacing */
-  border-radius: 10px; /* Rounded corners */
-  text-align: center; /* Center text and images */
-}
 
-.team-title {
-  font-size: 2.5rem; /* Adjust font size as needed */
-  color: white; /* Set text color */
-  margin-bottom: 40px; /* Add space below the title */
-}
 
-.team-members {
-  display: flex;
-  flex-wrap: wrap; /* Allow wrapping of items */
-  justify-content: center; /* Center items horizontally */
-  gap: 20px; /* Space between items */
-}
-
-.team-member {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.team-member img {
-  width: 100px; /* Size of the circle photo */
-  height: 100px; /* Size of the circle photo */
-  border-radius: 50%; /* Make the image a circle */
-  object-fit: cover; /* Ensure image covers the circle */
-  border: 3px solid white; /* Border around the circle photo */
-  margin-bottom: 10px; /* Space below the photo */
-}
-
-.team-member h5 {
-  font-size: 1.2rem; /* Font size for names */
-  color: white; /* Set text color */
-  margin: 0; /* Remove default margin */
-}
 /* ------------------------- Features.js ------------------------------ */
 .features-container {
-  margin-top: 200px;
+  margin: 200px auto;
   background-color: #545055;
   padding: 40px; /* Padding inside the container */
   border-radius: 10px; /* Rounded corners */
   text-align: center; /* Center align text */
   color: white; /* Set text color to white */
+  height: 30rem;
+  width: 80rem;
 }
 
 .features-container h1 {
@@ -694,16 +657,24 @@ button:hover {
 }
 
 .features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid layout */
-  gap: 20px; /* Space between grid items */
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid layout 
+  gap: 20px; Space between grid items */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .feature-item {
   background: #fff; /* White background for feature items */
   padding: 20px; /* Padding inside feature items */
-  border-radius: 10px; /* Rounded corners */
+  border-radius: 15px; /* Rounded corners */
   color: #333; /* Text color for feature items */
+  margin: 30px 30px;
+  height: 210px;
+  width: 210px;
+  position: relative;
 }
 
 .feature-item i {
@@ -719,4 +690,107 @@ button:hover {
 
 .feature-item p {
   font-size: 1rem; /* Font size for paragraphs */
+}
+
+
+/* ------------------------- Team.js ------------------------------ */
+.team-container {
+  /* background-color: #545055; Same color as the heading container */
+  width: 80%;
+  max-width: 1300px; /* Match the max-width of the carousel container */
+  margin: 70px auto; /* Adjust margin as needed */
+  padding: 40px; /* Add padding for spacing */
+  border-radius: 10px; /* Rounded corners */
+  text-align: center; /* Center text and images */
+}
+
+.team-title {
+  font-size: 2.5rem; /* Adjust font size as needed */
+  color: #cdc3ca; /* Set text color */
+  margin-bottom: 40px; /* Add space below the title */
+}
+
+.team-members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* gap: 100px; */
+  align-items: center;
+  margin: 40px;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.team-member img {
+  width: 215px; /* Size of the circle photo */
+  height: 215px; /* Size of the circle photo */
+  border-radius: 50%; /* Make the image a circle */
+  object-fit: cover; /* Ensure image covers the circle */
+  border: 8px solid rgba(255, 255, 255, 0.12); /* Border around the circle photo */
+  margin-bottom: 10px; /* Space below the photo */
+  margin: 20px 50px;
+}
+
+.team-member h5 {
+  font-size: 1.2rem; /* Font size for names */
+  color: #cdc3ca; /* Set text color */
+  margin: 0; /* Remove default margin */
+}
+
+
+/* ---------------------------- Footer ----------------------------------- */
+.footer {
+  background-color: #545055;
+  color: #cdc3ca;
+  padding: 20px 0;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 16px;
+  height: 11rem;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-links {
+  margin: 35px auto;
+}
+
+.footer-links a {
+  color: #ECF0F1;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #18BC9C; /* Accent color on hover */
+}
+
+.footer-company-info p {
+  margin: 5px 0;
+}
+
+.footer-company-info a {
+  color: #7a60ff;
+  text-decoration: none;
+}
+
+.footer-company-info a:hover {
+  text-decoration: underline;
 }
