@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import NavBar from "../Components/NavBar";
 
 export default function UserForm() {
   const navigate = useNavigate();
@@ -68,6 +69,7 @@ export default function UserForm() {
 
   return (
     <>
+    <NavBar/>
       <div className="user-container">
         <div className="left-container">
           <img

@@ -46,13 +46,13 @@ const MakeTransaction = () => {
         setDestinationUserID("");
         setType("deposit");
         setTransactionPassword("");
-        if (response.status === 201) {
-          toast.success("Logged in successfully", {
+        if (response.text === "Transaction Successful") {
+          toast.success("Transaction successfully", {
             position: "top-right",
             style: { width: "400px", height: "60px" },
           });
-        } else {
-          toast.error("Invalid Username or Password", {
+        } else if(response.text === "Transaction Failed") {
+          toast.error("Transaction Failed", {
             position: "top-right",
             style: { width: "400px", height: "60px" },
           });

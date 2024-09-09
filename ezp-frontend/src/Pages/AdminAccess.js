@@ -1,28 +1,29 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import FetchingUserData from "../Components/FetchingUserData";
 import FetchingRiskScores from "../Components/FetchingRiskScores";
 import FetchingTransactionDetails from "../Components/FetchingTransactionDetails";
+import NavBar from "../Components/NavBar";
 
 export default function AdminAccess() {
   const [activeComponent, setActiveComponent] = useState("usersData");
 
-  const renderComponent = ()=>{
+  const renderComponent = () => {
     switch (activeComponent) {
       case "usersData":
-        return <FetchingUserData/>
+        return <FetchingUserData />;
       case "riskScores":
-        return <FetchingRiskScores/>
+        return <FetchingRiskScores />;
       case "transactionDetails":
-        return <FetchingTransactionDetails/>
-    
+        return <FetchingTransactionDetails />;
       default:
         return null;
     }
-  }
+  };
 
   return (
     <>
+      <NavBar />
       <div className="admin-container">
         <input
           className="subContainer"
@@ -43,10 +44,10 @@ export default function AdminAccess() {
           onClick={() => setActiveComponent("transactionDetails")}
         />
       </div>
+
       <div className="admin-display-container">
-        {renderComponent()}
+          {renderComponent()}
       </div>
-      
     </>
   );
 }

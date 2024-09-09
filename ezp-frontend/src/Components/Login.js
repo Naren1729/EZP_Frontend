@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 export default function Login(props) {
   const userNameRef = useRef(); //Reference the HTML elemnets to the react app
@@ -22,12 +23,17 @@ export default function Login(props) {
       }),
     });
 
+    // Parsing the response to get the text
+    const message = await response.text();
+
     console.log("Username:", userNameRef.current.value);
     console.log("Password:", passwordRef.current.value);
 
     //For user login page
     if (
-      response.status === 200 ||
+      // Login Failed
+      // Login Successful
+      message === "Login Successful" ||
       (userNameRef.current.value === "admin123" &&
         passwordRef.current.value === "EZP123")
     ) {
@@ -38,7 +44,7 @@ export default function Login(props) {
       if (userNameRef.current.value === "admin123")
         navigate("/admin/adminAccess");
       else navigate("/main/userForm");
-    } else if (response.status === 400) {
+    } else if (message === "Login Failed") {
       toast.error("Invalid Username or Password", {
         position: "top-right",
         style: { width: "400px", height: "60px" },
@@ -48,7 +54,12 @@ export default function Login(props) {
 
   return (
     <>
-      <div className="login-form-container">
+      <motion.div
+          className="login-form-container"
+          initial={{ x: '8vw' }} // Start off-screen from the left
+          animate={{ x: 0 }}        // Animate to its current position
+          transition={{ type: 'spring', stiffness: 50, damping: 20, duration: 4 }} // Smooth transition
+        >
         <p>Welcome to {props.title} Login</p>
 
         <form onSubmit={handleSubmit}>
@@ -76,7 +87,7 @@ export default function Login(props) {
           </div>
           <button type="submit">Submit</button>
         </form>
-      </div>
+      </motion.div>
     </>
   );
 }

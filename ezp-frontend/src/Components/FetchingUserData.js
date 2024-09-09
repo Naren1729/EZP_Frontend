@@ -41,13 +41,10 @@ export default function FetchingUserData() {
   return (
     <div className='get-data-container'>
       <h1 className='get-data-title'>All Users:</h1>
-      {error ? (
-        <p>{error}</p>
-      ) : (
-        <div className="get-data-container">
+        <ul className="get-data-container">
           {users.map((transaction, index) => (
           
-            <div className="card">
+          <li key={transaction.transactionId} className="card">
               <div class="circle">
                 <h2>{transaction.id}</h2>
               </div>
@@ -57,10 +54,9 @@ export default function FetchingUserData() {
                 <p>Email:<strong className='user-data-label'> {transaction.email}</strong></p>
                 <p>Current Balance:<strong className='user-data-label'>{transaction.currentBalance}</strong> </p>
              </div>
-            </div>
+            </li>
           ))}
-        </div>
-      )}
+        </ul>
     </div>
   );
 }
