@@ -19,6 +19,7 @@ export default function FetchingUserData() {
         }
 
         let data = await response.json();
+        console.log(data);
         setUsers(data);
       } catch (error) {
         setError(error);
@@ -52,7 +53,7 @@ export default function FetchingUserData() {
                 <p>Username:<strong className='user-data-label'>{transaction.username}</strong> </p>
                 <p>Email:<strong className='user-data-label'> {transaction.email}</strong></p>
                 <p>Current Balance:<strong className='user-data-label'>{transaction.currentBalance}</strong> </p>
-                <p>Blocklisted<strong className='user-data-label'>{transaction.isBlockeListed}</strong></p>
+                <p>Blocklist Status:<strong className='user-data-label'>{transaction.isBlockeListed ? "Yes" : "No"}</strong></p>
              </div>
             </li>
           ))}
