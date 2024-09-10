@@ -9,11 +9,14 @@ step 3: open browser and go to trace.playwright.dev
 step 4: drop the zip file here to view the trace
 
 # Running tests
+{NOTE: RUN Test1 first at all times. Other three tests you can run in any order}
 
-step 1: open terminal and enter 
+step 1: Run both front end and backend with table = "create" under application.properties in springboot
+
+step 2: open terminal and enter 
 
 >> npm init playwright@latest   
 
 >> cd EZP_Frontend\testcases_playwright 
 
-step 2: run command present in each test file under tests folder
+step 3: run command present in each test file under tests folder
