@@ -1,4 +1,4 @@
-# Viewing test tracs
+# Viewing test traces
 
 step 1: go to All completed test traces\test2_UserForm-Checking-up-0202a-nder-admin---Get-User-Data--chromium\trace.zip 
 
