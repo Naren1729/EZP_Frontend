@@ -41,7 +41,7 @@ export default function NavBar() {
       });
 
       // Redirect to the login page
-      navigate("admin/authenticate");
+      navigate("/admin/authenticate");
     }
 
   };

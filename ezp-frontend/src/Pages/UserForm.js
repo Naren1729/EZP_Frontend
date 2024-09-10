@@ -7,7 +7,7 @@ export default function UserForm() {
   const navigate = useNavigate();
   const [amount, setAmount] = useState(0);
   const [destinationUserID, setDestinationUserID] = useState("");
-  const [type, setType] = useState("deposit");
+  const [type, setType] = useState("transfer");
   const [transactionPassword, setTransactionPassword] = useState("");
   const [userID, setUserID] = useState(""); // Define userID state
   const url = "http://localhost:9090/api/transaction";
@@ -111,7 +111,7 @@ export default function UserForm() {
         // Clear form fields after successful submission
         setAmount(0);
         setDestinationUserID("");
-        setType("deposit");
+        setType("transfer");
         setTransactionPassword("");
 
         if (json === "Transaction Successful" && response.status === 200) {
@@ -190,13 +190,13 @@ export default function UserForm() {
                   <div className="radio-option">
                     <input
                       type="radio"
-                      id="deposit"
+                      id="transfer"
                       name="type"
-                      value="deposit"
-                      checked={type === "deposit"}
+                      value="transfer"
+                      checked={type === "transfer"}
                       onChange={(e) => setType(e.target.value)}
                     />
-                    <label htmlFor="deposit">Deposit</label>
+                    <label htmlFor="transfer">Transfer</label>
                   </div>
                 </div>
               </div>
