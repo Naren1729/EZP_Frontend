@@ -42,7 +42,7 @@ export default function UserDepositForm() {
       return false;
     }
     if (!transactionPassword.trim()|| transactionPassword.length < 4) {
-      toast.error("Transaction Password is required", { position: "top-right" }); 
+      toast.error("Transaction Password must be at least 4 characters long", { position: "top-right" }); 
       return false;
     }
     return true;

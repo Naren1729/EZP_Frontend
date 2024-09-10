@@ -1,3 +1,13 @@
+# Viewing test tracs
+
+step 1: go to All completed test traces\test2_UserForm-Checking-up-0202a-nder-admin---Get-User-Data--chromium\trace.zip 
+
+step 2: download the .zip file
+
+step 3: open browser and go to trace.playwright.dev
+
+step 4: drop the zip file here to view the trace
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
