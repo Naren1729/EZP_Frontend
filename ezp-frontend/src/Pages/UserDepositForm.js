@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'; // Make sure to import the CSS
 
 export default function UserDepositForm() {
   const navigate = useNavigate();
@@ -14,18 +15,55 @@ export default function UserDepositForm() {
   const [transactionPassword, setTransactionPassword] = useState("");
   const url = "http://localhost:9090/api/user";
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateForm = () => {
+    if (!username.trim()) {
+      toast.error("Username is required", { position: "top-right" });
+      return false;
+    }
+    if (!name.trim()) {
+      toast.error("Name is required", { position: "top-right" });
+      return false;
+    }
+    if (!password.trim() || password.length < 4) {
+      toast.error("Password must be at least 4 characters long", { position: "top-right" });
+      return false;
+    }
+    if (!validateEmail(email)) {
+      toast.error("Invalid email format", { position: "top-right" });
+      return false;
+    }
+    if (currentBalance < 0) {
+      toast.error("Current Balance cannot be negative 0", { position: "top-right" });
+      return false;
+    }
+    if (!transactionPassword.trim()|| transactionPassword.length < 4) {
+      toast.error("Transaction Password is required", { position: "top-right" }); 
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return; // Stop submission if validation fails
+    }
+
     const userData = {
       username,
       name,
       password,
       email,
-      currentBalance: Number(currentBalance), // Ensure it's a number
+      currentBalance: Number(currentBalance),
       isBlockListed,
       transactionPassword,
     };
-    console.log(userData);
 
     try {
       let response = await fetch(url, {
@@ -53,19 +91,16 @@ export default function UserDepositForm() {
       if (response.status === 201) {
         toast.success("Signed up successfully", {
           position: "top-right",
-          style: { width: "400px", height: "60px" },
         });
         navigate("/main/authenticate");
       } else {
         toast.error("Invalid Username or Password", {
           position: "top-right",
-          style: { width: "400px", height: "60px" },
         });
       }
     } catch (error) {
-      toast.error("User alredy present", {
+      toast.error("User already present", {
         position: "top-right",
-        style: { width: "500px", height: "60px" },
       });
       console.error("There was a problem with the fetch operation:", error);
     }
@@ -131,17 +166,18 @@ export default function UserDepositForm() {
           />
         </div>
         <div className="deposit-form-group">
-          <label
-            htmlFor="currentBalance"
-            className="form-label"
-            placeholder="100000"
-          >
+          <label htmlFor="currentBalance" className="form-label">
             Current Balance
           </label>
           <input
             id="currentBalance"
             value={currentBalance}
-            onChange={(e) => setCurrentBalance(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value >= 0) {
+                setCurrentBalance(value);
+              }
+            }}
             type="number"
             className="form-input"
             placeholder="Current Balance"
@@ -157,6 +193,7 @@ export default function UserDepositForm() {
             value={isBlockListed}
             onChange={(e) => setIsBlockListed(e.target.value === "true")}
             className="form-select"
+            required
           >
             <option value="false">No</option>
             <option value="true">Yes</option>
@@ -170,7 +207,7 @@ export default function UserDepositForm() {
             id="transactionPassword"
             value={transactionPassword}
             onChange={(e) => setTransactionPassword(e.target.value)}
-            type="text"
+            type="password"
             className="form-input"
             placeholder="Transaction Password"
             required

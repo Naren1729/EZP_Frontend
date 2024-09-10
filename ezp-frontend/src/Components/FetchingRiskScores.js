@@ -20,7 +20,7 @@ export default function FetchingRiskScores() {
         }
         let data = await response.json();
         setFraudTransactions(data);
-      } catch (eror) {
+      } catch (error) {
         setError(error);
       } finally {
         setLoading(false);

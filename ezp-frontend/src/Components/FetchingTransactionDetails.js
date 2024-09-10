@@ -20,7 +20,7 @@ export default function FetchingTransactionDetails() {
         }
         let data = await response.json();
         setTransactions(data);
-      } catch (eror) {
+      } catch (error) {
         setError(error);
       } finally {
         setLoading(false);
