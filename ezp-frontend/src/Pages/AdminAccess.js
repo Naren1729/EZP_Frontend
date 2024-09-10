@@ -20,7 +20,7 @@ export default function AdminAccess() {
         style: { width: "400px", height: "60px" },
       });
       sessionStorage.clear();
-      navigate("/main/admin/authenticate"); // Redirect to login page if session variables are missing
+      navigate("/admin/authenticate"); // Redirect to login page if session variables are missing
     }
     else if (usertype!=="admin") {
       toast.error("Unauthorized access. Please log in as admin", {
@@ -29,7 +29,7 @@ export default function AdminAccess() {
         
       });
       sessionStorage.clear();
-      navigate("/main/admin/authenticate"); // Redirect to login page if session variables are missing
+      navigate("/admin/authenticate"); // Redirect to login page if session variables are missing
     }
   }, [navigate]);
   const renderComponent = () => {
