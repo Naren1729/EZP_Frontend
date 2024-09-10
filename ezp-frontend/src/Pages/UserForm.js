@@ -49,7 +49,7 @@ export default function UserForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     // Frontend validation
     if (amount <= 0) {
       toast.error("Amount must be greater than zero", {
@@ -79,7 +79,7 @@ export default function UserForm() {
       });
       return;
     }
-
+  
     const transactionData = {
       amount: Number(amount),
       userID,
@@ -87,63 +87,85 @@ export default function UserForm() {
       type,
       transactionPassword,
     };
-
+  
     try {
       let response = await fetch(url, {
         method: "POST",
         body: JSON.stringify(transactionData),
         headers: { "Content-Type": "application/json" },
       });
-
+  
+      // Convert the response to text to get the actual message
       let json = await response.text();
-
+  
       if (!response.ok) {
-        setError(json.message || "Network error");
-        setStatus("Failed");
-        toast.error("Transaction Failed: " + (json.message || "Network error"), {
+        // Network-level error (non-200 status codes)
+        if (json === '{"status":500,"error":"Cannot invoke \\"com.ezpay.entity.User.getIsBlockeListed()\\" because \\"destinationUser\\" is null"}') {
+          toast.error("Transaction failed: Destination user does not exist or is null", {
+            position: "top-right",
+            style: { width: "400px", height: "100px" },
+          });
+        }
+        else if (json === '{"status":500,"error":"Last unit does not have enough valid bits"}') {
+          toast.error("Transaction failed: Destination user cannot be same as Sender", {
+            position: "top-right",
+            style: { width: "400px", height: "100px" },
+          });
+        }
+        else{
+          toast.error("Network Error: " + (json || "Unknown error"), {
+            position: "top-right",
+            style: { width: "400px", height: "200px" },
+          });
+        }
+      } else if (json === "Transaction Successful") {
+        // Transaction was successful
+        toast.success("Transaction Successful", {
           position: "top-right",
-          style: { width: "400px", height: "60px" },
+          style: { width: "400px", height: "100px" },
         });
-      } else {
-        setStatus(json);
-        setError(null);
-
+        setStatus("Success");
+  
         // Clear form fields after successful submission
         setAmount(0);
         setDestinationUserID("");
         setType("deposit");
         setTransactionPassword("");
-
-        if (json === "Transaction Successful" && response.status === 200) {
-          toast.success("Transaction Successful", {
-            position: "top-right",
-            style: { width: "400px", height: "60px" },
-          });
-          // Clear all session variables
-          sessionStorage.clear();
-          navigate("/main/authenticate");
-        } else if (json === "Transaction Failed" && response.status === 200) {
-          toast.error("Transaction Failed", {
-            position: "top-right",
-            style: { width: "400px", height: "60px" },
-          });
-          // Clear all session variables
-          sessionStorage.clear();
-          navigate("/main/authenticate");
-        }
+  
+        // Clear session and navigate to authentication
+        sessionStorage.clear();
+        navigate("/main/authenticate");
+      } else if (json === "Transaction Failed") {
+        // Transaction failed, but no network error
+        toast.error("Transaction Failed", {
+          position: "top-right",
+          style: { width: "400px", height: "100px" },
+        });
+        setStatus("Failed");
+  
+        // Optional: Clear session or perform other actions on failure
+        sessionStorage.clear();
+        navigate("/");
+      } else {
+        // Handle unexpected messages from the backend
+        toast.error("Unexpected response: " + json, {
+          position: "top-right",
+          style: { width: "400px", height: "100px" },
+        });
       }
     } catch (error) {
-      setError("Network error");
-      setStatus("Failed");
+      // Network error (e.g., server unreachable)
       toast.error("Network Error: Unable to process the transaction", {
         position: "top-right",
-        style: { width: "400px", height: "60px" },
+        style: { width: "400px", height: "100px" },
       });
+      setStatus("Failed");
     }
   };
+  
 
   return (
-    <>
+    <div>
       <NavBar />
       <div className="user-container">
         <div className="left-container">
@@ -220,6 +242,6 @@ export default function UserForm() {
           <img className="userForm_Img1" src="/userForm1.png" alt="" />
         </div>
       </div>
-    </>
+    </div>
   );
 }

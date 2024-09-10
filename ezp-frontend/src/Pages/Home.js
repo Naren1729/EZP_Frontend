@@ -8,14 +8,17 @@ import Team from "../Components/Team";
 import Footer from "../Components/Footer";
 
 export default function Home() {
+  const isLoggedIn = sessionStorage.getItem("username");
   return (
     <>
       <NavBar />
       <section id="home">
         <Hero />
       </section>
-
-      <Buttons />
+      {!isLoggedIn && (
+         <Buttons />
+        )}
+      
 
       <section id="about">
         <About />

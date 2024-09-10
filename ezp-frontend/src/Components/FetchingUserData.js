@@ -50,9 +50,9 @@ export default function FetchingUserData() {
               </div>
               <div class="content">
                 <p>Username:<strong className='user-data-label'>{transaction.username}</strong> </p>
-                <p>Password:<strong className='user-data-label'> {transaction.password}</strong></p>
                 <p>Email:<strong className='user-data-label'> {transaction.email}</strong></p>
                 <p>Current Balance:<strong className='user-data-label'>{transaction.currentBalance}</strong> </p>
+                <p>Blocklisted<strong className='user-data-label'>{transaction.isBlockeListed}</strong></p>
              </div>
             </li>
           ))}

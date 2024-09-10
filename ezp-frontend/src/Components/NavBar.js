@@ -28,7 +28,7 @@ export default function NavBar() {
       });
 
       // Redirect to the login page
-      navigate("/main/authenticate");
+      navigate("/");
     }
     else if (usertype === "admin") {
       sessionStorage.removeItem("username");
@@ -41,14 +41,15 @@ export default function NavBar() {
       });
 
       // Redirect to the login page
-      navigate("admin/authenticate");
+      navigate("/");
     }
 
   };
 
   // Check if the user is logged in by checking the session storage
-  const isLoggedIn = sessionStorage.getItem("username");
-
+  const isLoggedIn = sessionStorage.getItem("usertype");
+  const isLoggedInUser = sessionStorage.getItem("usertype")==="user"?true:false;
+  const isLoggedInAdmin = sessionStorage.getItem("usertype")==="admin"?true:false;
   return (
     <div className="nav-bar">
       <ul className="nav-items">
@@ -98,12 +99,29 @@ export default function NavBar() {
         </li>
 
         {/* Conditionally render the Logout button if the user is logged in */}
+        {isLoggedInUser && (
+          <li>
+          <Link to="#">
+          <span onClick={() => navigate("/main/userForm")}>Pay</span>
+          </Link>
+          </li>
+          
+        )}
+        {isLoggedInAdmin && (
+          <li>
+          <Link to="#">
+          <span onClick={() => navigate("/admin/adminAccess")}>Admin Panel</span>
+          </Link>
+          </li>
+          
+        )}
         {isLoggedIn && (
           <li>
           <Link to="#">
             <span onClick={handleLogout}>Logout</span>
           </Link>
           </li>
+          
         )}
       </ul>
     </div>

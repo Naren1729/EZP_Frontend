@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'; // Make sure to import the CSS
-
+import NavBar from "../Components/NavBar";
 export default function UserDepositForm() {
   const navigate = useNavigate();
 
@@ -107,6 +107,8 @@ export default function UserDepositForm() {
   };
 
   return (
+    <>
+    <NavBar />
     <div className="user-form-container">
       <form className="deposit-funds-form" onSubmit={handleSubmit}>
         <div className="deposit-form-group">
@@ -218,5 +220,6 @@ export default function UserDepositForm() {
         </button>
       </form>
     </div>
+    </>
   );
 }
