@@ -1,7 +1,17 @@
+/**
+ * @author Bhavansh, Naren
+ * 
+ * This component allows users to enter transaction details such as amount, destination user ID, and transaction password.
+ * It handles form submission, performs frontend validation, and communicates with the backend to process the transaction.
+ * It also checks for user authentication and authorization based on session storage values.
+ 
+ */
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import NavBar from "../Components/NavBar";
+
 
 export default function UserForm() {
   const navigate = useNavigate();
@@ -9,7 +19,7 @@ export default function UserForm() {
   const [destinationUserID, setDestinationUserID] = useState("");
   const [type, setType] = useState("transfer");
   const [transactionPassword, setTransactionPassword] = useState("");
-  const [userID, setUserID] = useState(""); // Define userID state
+  const [userID, setUserID] = useState(""); // State for storing the user ID
   const url = "http://localhost:9090/api/transaction";
   const [status, setStatus] = useState("");
   const [error, setError] = useState(null);
@@ -19,7 +29,9 @@ export default function UserForm() {
   // Fetch userID using username from sessionStorage
   const fetchUserId = async () => {
     try {
-      const response = await fetch(`http://localhost:9090/api/user/username/${username}`);
+      const response = await fetch(
+        `http://localhost:9090/api/user/username/${username}`
+      );
       const user = await response.json();
       if (user && user.id) {
         setUserID(user.id);
@@ -35,6 +47,7 @@ export default function UserForm() {
   };
 
   useEffect(() => {
+    // Check session storage for authentication and authorization
     if (!username || !usertype || usertype !== "user") {
       toast.error("Unauthorized access. Please log in as user", {
         position: "top-right",
@@ -43,14 +56,14 @@ export default function UserForm() {
       sessionStorage.clear();
       navigate("/main/authenticate");
     } else {
-      fetchUserId();
+      fetchUserId(); // Fetch user ID when the component is mounted
     }
   }, [username, usertype, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    // Frontend validation
+
+    // Frontend validation for form fields
     if (amount <= 0) {
       toast.error("Amount must be greater than zero", {
         position: "top-right",
@@ -79,7 +92,7 @@ export default function UserForm() {
       });
       return;
     }
-  
+
     const transactionData = {
       amount: Number(amount),
       userID,
@@ -87,36 +100,38 @@ export default function UserForm() {
       type,
       transactionPassword,
     };
-  
+
     try {
       let response = await fetch(url, {
         method: "POST",
         body: JSON.stringify(transactionData),
         headers: { "Content-Type": "application/json" },
       });
-  
+
       // Convert the response to text to get the actual message
       let json = await response.text();
-  
+
       if (!response.ok) {
         // Network-level error (non-200 status codes)
-        if (json === '{"status":500,"error":"Cannot invoke \\"com.ezpay.entity.User.getIsBlockeListed()\\" because \\"destinationUser\\" is null"}') {
-          toast.error("Transaction failed: Destination user does not exist or is null", {
-            position: "top-right",
-            style: { width: "400px", height: "100px" },
-          });
-        }
-        else if (json === '{"status":500,"error":"Last unit does not have enough valid bits"}') {
-          toast.error("Transaction failed: Destination user cannot be same as Sender", {
-            position: "top-right",
-            style: { width: "400px", height: "100px" },
-          });
-        }
-        else{
-          toast.error("Network Error: " + (json || "Unknown error"), {
-            position: "top-right",
-            style: { width: "400px", height: "200px" },
-          });
+        if (
+          json ===
+          '{"status":500,"error":"Cannot invoke \\"com.ezpay.entity.User.getIsBlockeListed()\\" because \\"destinationUser\\" is null"}'
+        ) {
+          toast.error(
+            "Transaction failed: Destination user does not exist or is null",
+            {
+              position: "top-right",
+              style: { width: "400px", height: "100px" },
+            }
+          );
+        } else {
+          toast.error(
+            "Transaction failed: Destination user cannot be same as Sender",
+            {
+              position: "top-right",
+              style: { width: "400px", height: "100px" },
+            }
+          );
         }
       } else if (json === "Transaction Successful") {
         // Transaction was successful
@@ -125,13 +140,13 @@ export default function UserForm() {
           style: { width: "400px", height: "100px" },
         });
         setStatus("Success");
-  
+
         // Clear form fields after successful submission
         setAmount(0);
         setDestinationUserID("");
         setType("transfer");
         setTransactionPassword("");
-  
+
         // Clear session and navigate to authentication
         sessionStorage.clear();
         navigate("/main/authenticate");
@@ -142,7 +157,7 @@ export default function UserForm() {
           style: { width: "400px", height: "100px" },
         });
         setStatus("Failed");
-  
+
         // Optional: Clear session or perform other actions on failure
         sessionStorage.clear();
         navigate("/");
@@ -162,7 +177,6 @@ export default function UserForm() {
       setStatus("Failed");
     }
   };
-  
 
   return (
     <div>
@@ -223,7 +237,9 @@ export default function UserForm() {
                 </div>
               </div>
               <div className="form-group">
-                <label htmlFor="transactionPassword">Transaction Password</label>
+                <label htmlFor="transactionPassword">
+                  Transaction Password
+                </label>
                 <input
                   value={transactionPassword}
                   onChange={(e) => setTransactionPassword(e.target.value)}

@@ -1,3 +1,20 @@
+/**
+ * @author Mayuri
+ * 
+ * @description
+ * AdminLogin Component
+ * 
+ * This component represents the Admin Login page of the application.
+ * It includes two main sections:
+ * 1. The left section contains an animated image for visual appeal.
+ * 2. The right section contains the actual login form.
+ * 
+ * The `Framer Motion` library is used to animate the left section, where the image slides in smoothly from the left side.
+ * The `Login` component is reused here to handle the admin login process.
+ * 
+ * NavBar component is also added at the top for site-wide navigation.
+ */
+
 import React from 'react';
 import Login from '../Components/Login';
 import NavBar from '../Components/NavBar';

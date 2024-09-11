@@ -1,4 +1,11 @@
-import React, { useEffect,useState } from "react";
+/**
+ * @author Mayuri
+ * @description
+ * This component serves as the admin access page where admins can retrieve user details, risk scores, and transaction details.
+ * It handles authentication and authorization based on session storage values.
+ */
+
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import FetchingUserData from "../Components/FetchingUserData";
 import FetchingRiskScores from "../Components/FetchingRiskScores";
@@ -12,6 +19,7 @@ export default function AdminAccess() {
   const [activeComponent, setActiveComponent] = useState("usersData");
   const username = sessionStorage.getItem("username");
   const usertype = sessionStorage.getItem("usertype");
+
   // Check session storage for username and usertype
   useEffect(() => {
     if (!username || !usertype) {
@@ -21,17 +29,17 @@ export default function AdminAccess() {
       });
       sessionStorage.clear();
       navigate("/admin/authenticate"); // Redirect to login page if session variables are missing
-    }
-    else if (usertype!=="admin") {
+    } else if (usertype !== "admin") {
       toast.error("Unauthorized access. Please log in as admin", {
         position: "top-right",
         style: { width: "400px", height: "60px" },
-        
       });
       sessionStorage.clear();
-      navigate("/admin/authenticate"); // Redirect to login page if session variables are missing
+      navigate("/admin/authenticate"); // Redirect to login page if user is not admin
     }
-  }, [navigate]);
+  }, [navigate, username, usertype]);
+
+  // Render the appropriate component based on the activeComponent state
   const renderComponent = () => {
     switch (activeComponent) {
       case "usersData":
@@ -49,6 +57,7 @@ export default function AdminAccess() {
     <>
       <NavBar />
       <div className="admin-container">
+        {/* Buttons to switch between components */}
         <input
           className="subContainer"
           type="button"
@@ -70,7 +79,8 @@ export default function AdminAccess() {
       </div>
 
       <div className="admin-display-container">
-          {renderComponent()}
+        {/* Display the currently active component */}
+        {renderComponent()}
       </div>
     </>
   );

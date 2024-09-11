@@ -1,7 +1,13 @@
+/**
+ * @author Mayuri
+ * @description This component contains the navbar, which includes home, about, features and our team.
+ */
+
 import React from "react";
 import { Link } from "react-scroll";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 export default function NavBar() {
   const navigate = useNavigate(); // Initialize useNavigate
 
@@ -17,39 +23,28 @@ export default function NavBar() {
   const handleLogout = () => {
     const usertype = sessionStorage.getItem("usertype");
     // Remove the session variables
-    if (usertype === "user") {
-      sessionStorage.removeItem("username");
-      sessionStorage.removeItem("usertype");
-      sessionStorage.clear();
-      // Show a toast notification
-      toast.success("You have been logged out successfully.", {
-        position: "top-right",
-        style: { width: "400px", height: "80px" },
-      });
+    sessionStorage.removeItem("username");
+    sessionStorage.removeItem("usertype");
+    sessionStorage.clear();
+    // Show a toast notification
+    toast.success("You have been logged out successfully.", {
+      position: "top-right",
+      style: { width: "400px", height: "80px" },
+    });
 
-      // Redirect to the login page
-      navigate("/");
-    }
-    else if (usertype === "admin") {
-      sessionStorage.removeItem("username");
-      sessionStorage.removeItem("usertype");
-      sessionStorage.clear();
-      // Show a toast notification
-      toast.success("You have been logged out successfully.", {
-        position: "top-right",
-        style: { width: "400px", height: "80px" },
-      });
+    // Redirect to the login page
+    navigate("/");
 
-      // Redirect to the login page
-      navigate("/");
-    }
-
+    setTimeout(() => {
+      window.location.reload(); // Force a page reload after navigation (optional, based on Code1)
+    }, 100);
   };
 
   // Check if the user is logged in by checking the session storage
   const isLoggedIn = sessionStorage.getItem("usertype");
-  const isLoggedInUser = sessionStorage.getItem("usertype")==="user"?true:false;
-  const isLoggedInAdmin = sessionStorage.getItem("usertype")==="admin"?true:false;
+  const isLoggedInUser = sessionStorage.getItem("usertype") === "user";
+  const isLoggedInAdmin = sessionStorage.getItem("usertype") === "admin";
+
   return (
     <div className="nav-bar">
       <ul className="nav-items">
@@ -98,32 +93,32 @@ export default function NavBar() {
           </Link>
         </li>
 
-        {/* Conditionally render the Logout button if the user is logged in */}
+        {/* Conditionally render based on user type */}
         {isLoggedInUser && (
           <li>
-          <Link to="#">
-          <span onClick={() => navigate("/main/userForm")}>Pay</span>
-          </Link>
+            <Link to="#">
+              <span onClick={() => navigate("/main/userForm")}>Pay</span>
+            </Link>
           </li>
-          
         )}
         {isLoggedInAdmin && (
           <li>
-          <Link to="#">
-          <span onClick={() => navigate("/admin/adminAccess")}>Admin Panel</span>
-          </Link>
+            <Link to="#">
+              <span onClick={() => navigate("/admin/adminAccess")}>
+                Admin Panel
+              </span>
+            </Link>
           </li>
-          
         )}
         {isLoggedIn && (
           <li>
-          <Link to="#">
-            <span onClick={handleLogout}>Logout</span>
-          </Link>
+            <Link to="#">
+              <span onClick={handleLogout}>Logout</span>
+            </Link>
           </li>
-          
         )}
       </ul>
     </div>
   );
 }
+

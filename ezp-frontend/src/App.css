@@ -1,3 +1,8 @@
+/* 
+@author : Mayuri
+@description: This file contains all the css properties used throughout the application
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 .poppins-bold {
@@ -42,18 +47,6 @@
   color: #4CAF50;
 }
 
-/* Smooth scrolling */
-/* html {
-  scroll-behavior: smooth;
-} */
-
-
-/* .heading-gradient {
-  background: linear-gradient(90deg, #f03f24, #ecab60);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-} */
-
 .container{
   display: flex;
   flex-direction: row;
@@ -61,10 +54,6 @@
   margin: auto;
   border-radius: 15px;
   height: 25rem;
-  /* background-color: #a4e7f1;
-  /* color: #dee2e6; 
-  color: rgb(55 105 162); */
-  /* background-color: #14024d; */
   background-color: #545055;
   margin-top: 50px;
 }
