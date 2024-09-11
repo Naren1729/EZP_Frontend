@@ -4,7 +4,7 @@
 
 // Test0: Testing if admin and transaction pages are accessible without logging in ;  
 
-// Run cmd : npx playwright test test-0_unauthorized_access --project chromium --workers 1 --debug
+// Run cmd : npx playwright test test-7_unauthorized_access --project chromium --workers 1 --debug
 
 import { test, expect } from '@playwright/test';
 const { chromium } = require('playwright');
