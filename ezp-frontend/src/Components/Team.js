@@ -18,12 +18,6 @@ const teamMembers = [
 export default function Team() {
   return (
     <div className="team-container">
-      {/* Description section */}
-      <div className="team-description">
-        <p>
-          Our team is composed of talented and dedicated individuals who work tirelessly to achieve our goals. Meet the people behind our success.
-        </p>
-      </div>
       {/* Title of the section with animation */}
       <motion.h1
         variants={fadeIn("right", 0.2)}
