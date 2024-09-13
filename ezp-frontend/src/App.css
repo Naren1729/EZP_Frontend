@@ -530,24 +530,55 @@ button:hover {
 
 /* ----------------------------- User Deposit Form -------------------------------------- */
 
-.deposit-funds-container {
+.signUp-form-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.signUpDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 42rem;
+  margin-left: -107px;
+}
+
+.signUpTitle{
+  font-size: 30px;
+  width: 75%;
+  color: #bab9b9;
+  margin-top: 10px;
+  margin-bottom: -50px;
+  text-align: center;
+}
+
+.signUpDiv img{
+  height: 45rem;
+}
+
+.deposit-funds-form {
+  flex-direction: row;
+  align-items: center;
+  width: 650px;
+  margin: 40px auto;
   padding: 20px;
   border-radius: 25px;
   border: 2px solid grey;
-  width: 60rem;
-  margin: 60px auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .deposit-funds-form {
   display: flex;
   flex-direction: column;
+  height: 50rem;
 }
 
 .deposit-form-group {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin: 7px auto;
 }
 
 .form-label {

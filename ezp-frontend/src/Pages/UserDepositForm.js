@@ -121,7 +121,7 @@ export default function UserDepositForm() {
   return (
     <>
       <NavBar /> {/* Render the navigation bar */}
-      <div className="user-form-container">
+      <div className="signUp-form-container">
         <form className="deposit-funds-form" onSubmit={handleSubmit}>
           {/* Username field */}
           <div className="deposit-form-group">
@@ -209,7 +209,7 @@ export default function UserDepositForm() {
           </div>
           
           {/* Blocklisted field */}
-          <div className="deposit-form-group">
+          {/* <div className="deposit-form-group">
             <label htmlFor="isBlockListed" className="form-label">
               Blocklisted
             </label>
@@ -223,7 +223,7 @@ export default function UserDepositForm() {
               <option value="false">No</option>
               <option value="true">Yes</option>
             </select>
-          </div>
+          </div> */}
           
           {/* Transaction Password field */}
           <div className="deposit-form-group">
@@ -246,6 +246,13 @@ export default function UserDepositForm() {
             Submit
           </button>
         </form>
+        {/* SignUp Div text and image added */}
+        <div className="signUpDiv">
+          <div className="signUpTitle poppins-bold">
+            <h2>Secure Your Information Today – Sign Up Now!</h2>
+          </div>
+          <img src="/signUpImage.png" alt="" srcset="" />
+        </div>
       </div>
     </>
   );
