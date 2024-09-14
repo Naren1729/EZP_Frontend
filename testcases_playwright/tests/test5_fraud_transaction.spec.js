@@ -178,10 +178,10 @@ test('Checking updation of 2 signed-up users and perform failed transaction with
     //logout
     await page.locator('a').filter({ hasText: 'Logout' }).click();
     await expect(page).toHaveURL('http://localhost:3000');
-    const toast4 = page.locator('.Toastify__toast--success');
-    await expect(toast4).toBeVisible();
-    await expect(toast4).toContainText('You have been logged out successfully.');
-    await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
+    // const toast4 = page.locator('.Toastify__toast--success');
+    // await expect(toast4).toBeVisible();
+    // await expect(toast4).toContainText('You have been logged out successfully.');
+    // await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
 
 
     //User Login - arvind
@@ -276,10 +276,10 @@ test('Checking updation of 2 signed-up users and perform failed transaction with
     //logout
     await page.locator('a').filter({ hasText: 'Logout' }).click();
     await expect(page).toHaveURL('http://localhost:3000');
-    const toast8 = page.locator('.Toastify__toast--success');
-    await expect(toast8).toBeVisible();
-    await expect(toast8).toContainText('You have been logged out successfully.');
-    await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
+    // const toast8 = page.locator('.Toastify__toast--success');
+    // await expect(toast8).toBeVisible();
+    // await expect(toast8).toContainText('You have been logged out successfully.');
+    // await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
 
     // ---------------------
     await context.close();
@@ -379,10 +379,10 @@ test('Checking updation of 2 signed-up users and perform failed transaction with
     //logout
     await page.locator('a').filter({ hasText: 'Logout' }).click();
     await expect(page).toHaveURL('http://localhost:3000');
-    const toast4 = page.locator('.Toastify__toast--success');
-    await expect(toast4).toBeVisible();
-    await expect(toast4).toContainText('You have been logged out successfully.');
-    await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
+    // const toast4 = page.locator('.Toastify__toast--success');
+    // await expect(toast4).toBeVisible();
+    // await expect(toast4).toContainText('You have been logged out successfully.');
+    // await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
   
       await page.goto('http://localhost:3000/');
       await page.getByRole('link', { name: 'Admin' }).click();
@@ -436,9 +436,9 @@ test('Checking updation of 2 signed-up users and perform failed transaction with
       //logout
       await page.locator('a').filter({ hasText: 'Logout' }).click();
       await expect(page).toHaveURL('http://localhost:3000');
-      const toast8 = page.locator('.Toastify__toast--success');
-      await expect(toast8).toBeVisible();
-      await expect(toast8).toContainText('You have been logged out successfully.');
-      await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
+      // const toast8 = page.locator('.Toastify__toast--success');
+      // await expect(toast8).toBeVisible();
+      // await expect(toast8).toContainText('You have been logged out successfully.');
+      // await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
     });
   

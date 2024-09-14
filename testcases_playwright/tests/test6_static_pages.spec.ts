@@ -43,7 +43,8 @@ test('Testing Home, About, Features, and Our Team sections', async ({ page }) =>
   await page.waitForTimeout(500);
 
   // Check if the mission statement is visible
-  await expect(page.getByText('Our MissionOur mission is to').nth(1)).toBeVisible();
+  await expect(page.getByText('Our Mission').nth(1)).toBeVisible();
+  await expect(page.getByText('Our mission is to ensure').nth(1)).toBeVisible();
   await expect(page.getByRole('heading', { name: 'About Us' })).toBeVisible();
 
   // ===================
@@ -54,11 +55,11 @@ test('Testing Home, About, Features, and Our Team sections', async ({ page }) =>
 
   // Verify the heading and various feature items are visible
   await expect(page.getByRole('heading', { name: 'Features' })).toBeVisible();
-  await expect(page.getByText('SecurityState-of-the-art')).toBeVisible();
-  await expect(page.getByText('PaymentsEasy and secure')).toBeVisible();
-  await expect(page.getByText('Fraud DetectionAdvanced')).toBeVisible();
-  await expect(page.getByText('Support24/7 customer support')).toBeVisible();
-  await expect(page.getByText('FeaturesSecurityState-of-the-')).toBeVisible();
+  await expect(page.getByText('Security State-of-the-art')).toBeVisible();
+  await expect(page.getByText('Payments Easy and secure')).toBeVisible();
+  await expect(page.getByText('Fraud Detection Advanced')).toBeVisible();
+  await expect(page.getByText('Support 24/7 customer support')).toBeVisible();
+  await expect(page.getByText('Features Security State-of-the-')).toBeVisible();
 
   // ===================
   // Our Team Page Tests

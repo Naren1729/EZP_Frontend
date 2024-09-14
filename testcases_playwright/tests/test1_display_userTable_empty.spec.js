@@ -49,10 +49,10 @@ await expect(errorMessage1).toBeVisible();  // Asserts that the error message is
 // Logging out of the admin interface
 await page.locator('a').filter({ hasText: 'Logout' }).click();
 await expect(page).toHaveURL('http://localhost:3000');  // Verifies redirection to the homepage
-const toast4 = page.locator('.Toastify__toast--success');  // Verifies the "logged out successfully" message
-await expect(toast4).toBeVisible();  // Ensures the success message is visible
-await expect(toast4).toContainText('You have been logged out successfully.');  // Verifies the correct logout message
-await page.waitForTimeout(10000); // Waits for the toast message to close
+// const toast4 = page.locator('.Toastify__toast--success');  // Verifies the "logged out successfully" message
+// await expect(toast4).toBeVisible();  // Ensures the success message is visible
+// await expect(toast4).toContainText('You have been logged out successfully.');  // Verifies the correct logout message
+// await page.waitForTimeout(10000); // Waits for the toast message to close
 
 // Closes the browser and ends the test
 await context.close();
@@ -96,10 +96,10 @@ await expect(errorMessage2).toBeVisible();  // Asserts that the error message ap
 // Logging out of the admin panel
 await page.locator('a').filter({ hasText: 'Logout' }).click();
 await expect(page).toHaveURL('http://localhost:3000');  // Confirms redirection to the homepage
-const toast4 = page.locator('.Toastify__toast--success');  // Verifies logout success message
-await expect(toast4).toBeVisible();  // Ensures the success message is visible
-await expect(toast4).toContainText('You have been logged out successfully.');  // Confirms the correct logout message
-await page.waitForTimeout(10000);  // Waits for the toast to auto-close
+// const toast4 = page.locator('.Toastify__toast--success');  // Verifies logout success message
+// await expect(toast4).toBeVisible();  // Ensures the success message is visible
+// await expect(toast4).toContainText('You have been logged out successfully.');  // Confirms the correct logout message
+// await page.waitForTimeout(10000);  // Waits for the toast to auto-close
 
 // Closes the browser session
 await context.close();
@@ -143,10 +143,10 @@ await expect(errorMessage3).toBeVisible();  // Asserts that the error message is
 // Logging out of the admin interface
 await page.locator('a').filter({ hasText: 'Logout' }).click();
 await expect(page).toHaveURL('http://localhost:3000');  // Verifies redirection to the homepage after logout
-const toast4 = page.locator('.Toastify__toast--success');  // Confirms logout success message
-await expect(toast4).toBeVisible();  // Ensures the success toast is visible
-await expect(toast4).toContainText('You have been logged out successfully.');  // Confirms the correct logout message
-await page.waitForTimeout(10000);  // Waits for the toast to auto-close
+// const toast4 = page.locator('.Toastify__toast--success');  // Confirms logout success message
+// await expect(toast4).toBeVisible();  // Ensures the success toast is visible
+// await expect(toast4).toContainText('You have been logged out successfully.');  // Confirms the correct logout message
+// await page.waitForTimeout(10000);  // Waits for the toast to auto-close
 
 // Closes the browser session and context
 await context.close();

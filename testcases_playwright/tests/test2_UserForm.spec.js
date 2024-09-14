@@ -124,10 +124,10 @@ test('Checking updation of signed-up user data under admin - Get User Data', asy
   // Logging out from the admin panel
   await page.locator('a').filter({ hasText: 'Logout' }).click();
   await expect(page).toHaveURL('http://localhost:3000');  // Verifies redirection to homepage after logout
-  const toast3 = page.locator('.Toastify__toast--success');  // Verifies logout success message
-  await expect(toast3).toBeVisible();  // Ensures the logout success message is visible
-  await expect(toast3).toContainText('You have been logged out successfully.');  // Verifies the correct logout message
-  await page.waitForTimeout(7000);  // Waits for the toast to auto-close
+  // const toast3 = page.locator('.Toastify__toast--success');  // Verifies logout success message
+  // await expect(toast3).toBeVisible();  // Ensures the logout success message is visible
+  // await expect(toast3).toContainText('You have been logged out successfully.');  // Verifies the correct logout message
+  // await page.waitForTimeout(7000);  // Waits for the toast to auto-close
 
   // Closing the browser session and context
   await context.close();

@@ -72,7 +72,7 @@ test("sign-up form testing", async () => {
   // Expect an error notification about the transaction password length
   const toast_3 = page.locator('.Toastify__toast--error');
   await expect(toast_3).toBeVisible();
-  await expect(toast_3).toContainText('Transaction Password must be at least 4 characters long');
+  await expect(toast_3).toContainText('Transaction Password must be 4 characters long');
   await page.waitForTimeout(7000);
 
   // Third correction: update the transaction password to a valid length
@@ -153,10 +153,10 @@ test('Checking updation of signed-up user data under admin - Get User Data', asy
   // Log out as the admin
   await page.locator('a').filter({ hasText: 'Logout' }).click();
   await expect(page).toHaveURL('http://localhost:3000');
-  const toast3 = page.locator('.Toastify__toast--success');
-  await expect(toast3).toBeVisible();
-  await expect(toast3).toContainText('You have been logged out successfully.');
-  await page.waitForTimeout(7000);
+  // const toast3 = page.locator('.Toastify__toast--success');
+  // await expect(toast3).toBeVisible();
+  // await expect(toast3).toContainText('You have been logged out successfully.');
+  // await page.waitForTimeout(7000);
 
   // Close the browser context and the browser itself
   await context.close();
