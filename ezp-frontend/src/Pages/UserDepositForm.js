@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toast notifications
 import NavBar from "../Components/NavBar"; // Import the NavBar component
+import { motion } from "framer-motion";
+import { fadeIn } from "../variants";
 
 export default function UserDepositForm() {
   const navigate = useNavigate(); // Initialize navigation hook
@@ -22,8 +24,7 @@ export default function UserDepositForm() {
   const [isBlockListed, setIsBlockListed] = useState(false); // Boolean for blocklisted status
   const [transactionPassword, setTransactionPassword] = useState("");
   
-  // Define the URL for API request
-  const url = "http://localhost:9090/api/user";
+  const apiUrl = process.env.REACT_APP_API_URL;   // API endpoint to fetch transaction details
 
   // Function to validate the email format using a regular expression
   const validateEmail = (email) => {
@@ -33,20 +34,12 @@ export default function UserDepositForm() {
 
   // Function to validate form inputs before submission
   const validateForm = () => {
-    if (!username.trim()) {
-      toast.error("Username is required", { position: "top-right", style: { width: "400px", height: "60px" },});
-      return false;
-    }
-    if (!name.trim()) {
-      toast.error("Name is required", { position: "top-right", style: { width: "400px", height: "60px" },});
-      return false;
-    }
     if (!password.trim() || password.length < 4) {
       toast.error("Password must be at least 4 characters long", { position: "top-right", style: { width: "400px", height: "60px" }, });
       return false;
     }
     if (!validateEmail(email)) {
-      toast.error("Invalid email format", { position: "top-right" , style: { width: "400px", height: "60px" },});
+      toast.error("Invalid email format", { position: "top-right" , style: { width: "600px", height: "60px" },});
       return false;
     }
     if (currentBalance < 0) {
@@ -82,7 +75,7 @@ export default function UserDepositForm() {
 
     try {
       // Send the form data to the backend API using POST
-      let response = await fetch(url, {
+      let response = await fetch(`${apiUrl}/user`, {
         method: "POST",
         body: JSON.stringify(userData), // Convert form data to JSON
         headers: { "Content-Type": "application/json" },
@@ -122,7 +115,13 @@ export default function UserDepositForm() {
     <>
       <NavBar /> {/* Render the navigation bar */}
       <div className="signUp-form-container">
-        <form className="deposit-funds-form" onSubmit={handleSubmit}>
+        <motion.form className="deposit-funds-form"
+        
+        variants={fadeIn("right", 0.2)} // Fades in from the right with a delay of 0.2s
+        initial="hidden" // Initial hidden state
+        whileInView={"show"} // Animation triggered when in view
+        viewport={{ once: false, amount: 0.2 }} // Keeps animating as long as it's in view
+        onSubmit={handleSubmit}>
           {/* Username field */}
           <div className="deposit-form-group">
             <label htmlFor="username" className="form-label">
@@ -245,13 +244,26 @@ export default function UserDepositForm() {
           <button type="submit" className="userDepositForm-button">
             Submit
           </button>
-        </form>
+        </motion.form>
         {/* SignUp Div text and image added */}
         <div className="signUpDiv">
-          <div className="signUpTitle poppins-bold">
+          <motion.div className="signUpTitle poppins-bold"
+          variants={fadeIn("left", 0.2)} // Fades in from the right with a delay of 0.2s
+          initial="hidden" // Initial hidden state
+          whileInView={"show"} // Animation triggered when in view
+          viewport={{ once: false, amount: 0.2 }} // Keeps animating as long as it's in view
+          >
             <h2>Secure Your Information Today – Sign Up Now!</h2>
-          </div>
-          <img src="/signUpImage.png" alt="" srcset="" />
+          </motion.div>
+          <motion.div  
+            variants={fadeIn("up", 0.2)} // Fades in from the right with a delay of 0.2s
+            initial="hidden" // Initial hidden state
+            whileInView={"show"} // Animation triggered when in view
+            viewport={{ once: false, amount: 0.2 }} // Keeps animating as long as it's in view
+          >
+              <img src="/signUpImage.png" alt="" srcset="" />
+          </motion.div>
+          
         </div>
       </div>
     </>

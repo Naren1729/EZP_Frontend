@@ -17,14 +17,14 @@ export default function FetchingTransactionDetails() {
   // State to handle errors during the data fetching process
   const [error, setError] = useState(null);
 
-  const url = "http://localhost:9090/api/transactionDetails"; // API endpoint to fetch transaction details
+  const apiUrl = process.env.REACT_APP_API_URL;   // API endpoint to fetch transaction details
 
   // useEffect hook to fetch transactions when the component is mounted
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
         // Fetching transaction details from the API
-        let response = await fetch(url, {
+        let response = await fetch(`${apiUrl}/transactionDetails`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });

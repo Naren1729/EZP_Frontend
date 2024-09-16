@@ -287,12 +287,12 @@
 
 .depositFunds{
   color: #b2deeb;
-  margin-top: -108px;
+  margin-top: -98px;
   text-decoration: none;
 }
 .depositFunds:hover{
   color: #40c2ea;
-  margin-top: -108px;
+  margin-top: -98px;
   text-decoration: none;
 }
 
@@ -308,7 +308,7 @@
   padding: 20px;
   border-radius: 25px;
   border: 2px solid grey;
-  height: 33rem;
+  height: 34rem;
 }
 
 .login-form-container p{
@@ -773,6 +773,110 @@ button:hover {
   background: #fa2c2c;
 }
 
+.edit-delete {
+  display: flex;                    /* Use flexbox for horizontal alignment */
+  justify-content: space-between;    /* Position icons at the left and right corners */
+  align-items: center;               /* Align items vertically */
+  width: 100%;                       /* Make sure the width spans the entire card */
+  padding: 0 10px;                   /* Add a little padding for spacing */
+}
+
+.icon-container {
+  list-style-type: none;             /* Removes the default bullet points */
+  padding: 0;                        /* Removes default padding */
+  margin: 0;                         /* Removes default margin */
+  display: flex;                     /* Ensure icons are displayed inline */
+}
+
+.edit-icon, .delete-icon {
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+  padding: 5px;
+}
+
+
+/* Add to your CSS file */
+/* Add this CSS to your stylesheet */
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 15;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+  background: rgb(89, 87, 87);
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px; /* Adjust width as needed */
+  position: relative; /* To position the close button */
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Heading */
+.modal-content h2 {
+  text-align: center;
+  margin-top: 0; /* Remove top margin if needed */
+  font-size: 30px;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.modal-input,
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.modal-button[type="submit"] {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.modal-button[type="submit"]:hover {
+  background: #2980b9;
+}
+
 
 /* ------------------------- About.js ------------------------------ */
 .carousel-container {
@@ -1011,3 +1115,5 @@ button:hover {
 .footer-company-info a:hover {
   text-decoration: underline;
 }
+
+

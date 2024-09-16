@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 
 export default function Login(props) {
+  const apiUrl = process.env.REACT_APP_API_URL;  //API_URL accessed from the .env file
   const userNameRef = useRef(); // Reference to username input field
   const passwordRef = useRef(); // Reference to password input field
   const navigate = useNavigate(); // Hook for navigation
@@ -20,46 +21,48 @@ export default function Login(props) {
   const usertype = sessionStorage.getItem("usertype"); // Retrieve usertype from session storage
 
   // Effect to handle redirection if user is already logged in
-  useEffect(() => {
-    if ((username || usertype) && usertype === "user") {
-      toast.success("Already Logged In as user", {
-        position: "top-right",
-        style: { width: "400px", height: "60px" },
-      });
-      navigate("/main/userForm"); // Redirect to user form if already logged in as user
-    } else if ((username || usertype) && usertype === "admin") {
-      toast.success("Already Logged In as admin", {
-        position: "top-right",
-        style: { width: "400px", height: "60px" },
-      });
-      navigate("/admin/adminAccess"); // Redirect to admin access if already logged in as admin
-    }
-  }, [navigate, username, usertype]);
+  // useEffect(() => {
+  //   if ((username || usertype) && usertype === "user") {
+  //     toast.success("Already Logged In as user", {
+  //       position: "top-right",
+  //       style: { width: "400px", height: "60px" },
+  //     });
+  //     navigate("/main/userForm"); // Redirect to user form if already logged in as user
+  //   } else if ((username || usertype) && usertype === "admin") {
+  //     toast.success("Already Logged In as admin", {
+  //       position: "top-right",
+  //       style: { width: "400px", height: "60px" },
+  //     });
+  //     navigate("/admin/adminAccess"); // Redirect to admin access if already logged in as admin
+  //   }
+  // }, [navigate, username, usertype]);
 
   // Validation function to check if both fields are filled
-  const validateForm = () => {
-    if (!userNameRef.current.value || !passwordRef.current.value) {
-      setError("Both fields are required"); // Set error if fields are empty
-      return false;
-    }
-    setError(null); // Reset error if validation passes
-    return true;
-  };
+  // const validateForm = () => {
+  //   if (!userNameRef.current.value || !passwordRef.current.value) {
+  //     setError("Both fields are required"); // Set error if fields are empty
+  //     return false;
+  //   }
+  //   setError(null); // Reset error if validation passes
+  //   return true;
+  // };
+
 
   // Method to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
 
-    if (!validateForm()) {
-      toast.error("Please fill in both fields", {
-        position: "top-right",
-        style: { width: "400px", height: "60px" },
-      });
-      return;
-    }
+    //No need of validateForm, as "required keyword" already used in HTML
+    // if (!validateForm()) {
+    //   toast.error("Please fill in both fields", {
+    //     position: "top-right",
+    //     style: { width: "400px", height: "60px" },
+    //   });
+    //   return;
+    // }
 
     try {
-      const response = await fetch("http://localhost:9090/api/authenticate", {
+      const response = await fetch(`${apiUrl}/authenticate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,9 +110,9 @@ export default function Login(props) {
           });
           navigate("/main/userForm"); // Redirect to user form page
         } else {
-          toast.error("Invalid User Username or Password", {
+          toast.error("Invalid Username or Password", {
             position: "top-right",
-            style: { width: "400px", height: "60px" },
+            style: { width: "600px", height: "60px" },
           });
         }
       }
@@ -140,7 +143,7 @@ export default function Login(props) {
             name="username"
             placeholder="Username"
             ref={userNameRef}
-            required
+            required  //it is a required field
           />
         </div>
         <div className="form-group">
@@ -151,7 +154,7 @@ export default function Login(props) {
             name="password"
             placeholder="Password"
             ref={passwordRef}
-            required
+            required   //it is a required field
           />
         </div>
         <button type="submit">Submit</button>

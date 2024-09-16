@@ -17,14 +17,14 @@ export default function FetchingRiskScores() {
   // State to handle and display errors if the data fetching fails
   const [error, setError] = useState(null);
 
-  const url = "http://localhost:9090/api/fraudTransactionDetails"; // API URL to fetch fraud transaction details
+  const apiUrl = process.env.REACT_APP_API_URL; // API URL to fetch fraud transaction details
 
   // useEffect hook to fetch the fraud transactions data when the component is mounted
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
         // Fetching the fraud transactions from the backend API
-        let response = await fetch(url, {
+        let response = await fetch(`${apiUrl}/fraudTransactionDetails`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });

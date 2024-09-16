@@ -15,9 +15,7 @@ export default function Home() {
       <section id="home">
         <Hero />
       </section>
-      {!isLoggedIn && (
-         <Buttons />
-        )}
+      <Buttons />
       
 
       <section id="about">

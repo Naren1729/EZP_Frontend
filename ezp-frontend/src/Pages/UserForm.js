@@ -12,29 +12,32 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import NavBar from "../Components/NavBar";
 
-
 export default function UserForm() {
   const navigate = useNavigate();
   const [amount, setAmount] = useState(0);
+  const [currBalance, setCurrBalance] = useState(0);
   const [destinationUserID, setDestinationUserID] = useState("");
   const [type, setType] = useState("transfer");
   const [transactionPassword, setTransactionPassword] = useState("");
+  const [actualTransactionPw, setActualTransactionPw] = useState("");
   const [userID, setUserID] = useState(""); // State for storing the user ID
-  const url = "http://localhost:9090/api/transaction";
+  const apiUrl = process.env.REACT_APP_API_URL; // API endpoint to fetch transaction details
   const [status, setStatus] = useState("");
-  const [error, setError] = useState(null);
   const username = sessionStorage.getItem("username");
   const usertype = sessionStorage.getItem("usertype");
 
   // Fetch userID using username from sessionStorage
   const fetchUserId = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:9090/api/user/username/${username}`
-      );
+      const response = await fetch(`${apiUrl}/user/username/${username}`);
+
       const user = await response.json();
       if (user && user.id) {
         setUserID(user.id);
+        setCurrBalance(user.currentBalance);
+        setActualTransactionPw(user.transactionPassword);
+        console.log(currBalance);
+        console.log(actualTransactionPw);
       } else {
         throw new Error("User ID not found");
       }
@@ -48,50 +51,77 @@ export default function UserForm() {
 
   useEffect(() => {
     // Check session storage for authentication and authorization
-    if (!username || !usertype || usertype !== "user") {
-      toast.error("Unauthorized access. Please log in as user", {
-        position: "top-right",
-        style: { width: "400px", height: "60px" },
-      });
-      sessionStorage.clear();
-      navigate("/main/authenticate");
-    } else {
-      fetchUserId(); // Fetch user ID when the component is mounted
-    }
-  }, [username, usertype, navigate]);
+    // if (!username || !usertype || usertype !== "user") {
+    //   toast.error("Unauthorized access. Please log in as user", {
+    //     position: "top-right",
+    //     style: { width: "400px", height: "60px" },
+    //   });
+    //   sessionStorage.clear();
+    //   navigate("/main/authenticate");
+    // } else {
+    fetchUserId(); // Fetch user ID when the component is mounted
+  }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Frontend validation for form fields
+  const validateDetails = (e)=>{
     if (amount <= 0) {
       toast.error("Amount must be greater than zero", {
         position: "top-right",
         style: { width: "400px", height: "60px" },
       });
-      return;
+      return false;
     }
-    if (!userID) {
-      toast.error("User ID is required", {
+
+    //For checking amount sufficient or not
+    if (amount > currBalance) {
+      toast.error("Insufficient Balance", {
         position: "top-right",
         style: { width: "400px", height: "60px" },
       });
-      return;
+      return false;
     }
-    if (!destinationUserID) {
-      toast.error("Destination User ID is required", {
+
+    //For checking same user and destination Id
+    if (String(userID) === String(destinationUserID)) {
+      console.log(userID);
+      console.log(destinationUserID);
+      toast.error("Dest Id cannot be same as User Id", {
         position: "top-right",
-        style: { width: "400px", height: "60px" },
+        style: { width: "800px", height: "60px" },
       });
-      return;
+      return false;
     }
-    if (!transactionPassword) {
-      toast.error("Transaction Password is required", {
+
+    if (destinationUserID === null) {
+          console.log(e.json);
+          toast.error(
+            "Transaction failed: Destination user does not exist or is null",
+            {
+              position: "top-right",
+              style: { width: "400px", height: "100px" },
+            }
+          );
+        } 
+
+    //For checking transaction password is correct or not
+    if (transactionPassword !== actualTransactionPw) {
+      toast.error("Incorrect Transaction Password", {
         position: "top-right",
-        style: { width: "400px", height: "60px" },
+        style: { width: "600px", height: "60px" },
       });
-      return;
+      return false;
     }
+
+    setStatus("Failed");
+
+    // Optional: Clear session or perform other actions on failure
+    sessionStorage.clear();
+    // navigate("/main/authenticate");
+    return true;
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
 
     const transactionData = {
       amount: Number(amount),
@@ -102,7 +132,7 @@ export default function UserForm() {
     };
 
     try {
-      let response = await fetch(url, {
+      let response = await fetch(`${apiUrl}/transaction`, {
         method: "POST",
         body: JSON.stringify(transactionData),
         headers: { "Content-Type": "application/json" },
@@ -111,64 +141,205 @@ export default function UserForm() {
       // Convert the response to text to get the actual message
       let json = await response.text();
 
-      if (!response.ok) {
-        // Network-level error (non-200 status codes)
-        if (
-          json ===
-          '{"status":500,"error":"Cannot invoke \\"com.ezpay.entity.User.getIsBlockeListed()\\" because \\"destinationUser\\" is null"}'
-        ) {
-          toast.error(
-            "Transaction failed: Destination user does not exist or is null",
-            {
-              position: "top-right",
-              style: { width: "400px", height: "100px" },
-            }
-          );
-        } else {
-          toast.error(
-            "Transaction failed: Destination user cannot be same as Sender",
-            {
-              position: "top-right",
-              style: { width: "400px", height: "100px" },
-            }
-          );
-        }
-      } else if (json === "Transaction Successful") {
-        // Transaction was successful
-        toast.success("Transaction Successful", {
-          position: "top-right",
-          style: { width: "400px", height: "100px" },
-        });
-        setStatus("Success");
-
-        // Clear form fields after successful submission
-        setAmount(0);
-        setDestinationUserID("");
-        setType("transfer");
-        setTransactionPassword("");
-
-        // Clear session and navigate to authentication
-        sessionStorage.clear();
-        navigate("/main/authenticate");
-      } else if (json === "Transaction Failed") {
-        // Transaction failed, but no network error
-        toast.error("Transaction Failed", {
-          position: "top-right",
-          style: { width: "400px", height: "100px" },
-        });
-        setStatus("Failed");
-
-        // Optional: Clear session or perform other actions on failure
-        sessionStorage.clear();
-        navigate("/");
-      } else {
-        // Handle unexpected messages from the backend
-        toast.error("Unexpected response: " + json, {
-          position: "top-right",
-          style: { width: "400px", height: "100px" },
-        });
+      if(!response.ok){
+          if (
+            json ===
+            '{"status":500,"error":"Cannot invoke \\"com.ezpay.entity.User.getIsBlockeListed()\\" because \\"destinationUser\\" is null"}'
+          ) {
+            toast.error(
+              "Transaction failed: Destination user does not exist or is null",
+              {
+                position: "top-right",
+                style: { width: "400px", height: "100px" },
+              }
+            );
+          } 
+          return;
       }
-    } catch (error) {
+    if(validateDetails(userID, destinationUserID)){
+      toast.success("Transaction Successful", {
+        position: "top-right",
+        style: { width: "600px", height: "60px" },
+      });
+      setStatus("Success");
+
+      // Clear form fields after successful submission
+      setAmount(0);
+      setDestinationUserID("");
+      setType("transfer");
+      setTransactionPassword("");
+
+      // Clear session and navigate to authentication
+      sessionStorage.clear();
+      navigate("/main/authenticate");
+    }
+
+    // if (!userID) {
+    //   toast.error("User ID is required", {
+    //     position: "top-right",
+    //     style: { width: "400px", height: "60px" },
+    //   });
+    //   return;
+    // }
+    // if (!destinationUserID) {
+    //   toast.error("Destination User ID is required", {
+    //     position: "top-right",
+    //     style: { width: "400px", height: "60px" },
+    //   });
+    //   return;
+    // }
+    // if (!transactionPassword) {
+    //   toast.error("Transaction Password is required", {
+    //     position: "top-right",
+    //     style: { width: "400px", height: "60px" },
+    //   });
+    //   return;
+    // }
+
+      // if(!response.ok){
+      //   if (
+      //     json ===
+      //     '{"status":500,"error":"Cannot invoke \\"com.ezpay.entity.User.getIsBlockeListed()\\" because \\"destinationUser\\" is null"}'
+      //   ) {
+      //     toast.error(
+      //       "Transaction failed: Destination user does not exist or is null",
+      //       {
+      //         position: "top-right",
+      //         style: { width: "400px", height: "100px" },
+      //       }
+      //     );
+      //   } 
+      //   else if (json === "Transaction Successful") {
+      //     // Transaction was successful
+      //     toast.success("Transaction Successful", {
+      //       position: "top-right",
+      //       style: { width: "600px", height: "60px" },
+      //     });
+      //     setStatus("Success");
+  
+      //     // Clear form fields after successful submission
+      //     setAmount(0);
+      //     setDestinationUserID("");
+      //     setType("transfer");
+      //     setTransactionPassword("");
+  
+      //     // Clear session and navigate to authentication
+      //     sessionStorage.clear();
+      //     navigate("/main/authenticate");
+      //   } else if (json === "Transaction Failed") {
+      //     // Frontend validation for form fields
+      //     if (amount <= 0) {
+      //       toast.error("Amount must be greater than zero", {
+      //         position: "top-right",
+      //         style: { width: "400px", height: "60px" },
+      //       });
+      //       return;
+      //     }
+  
+      //     //For checking amount sufficient or not
+      //     if (amount > currBalance) {
+      //       toast.error("Insufficient Balance", {
+      //         position: "top-right",
+      //         style: { width: "400px", height: "60px" },
+      //       });
+      //     }
+  
+      //     //For checking transaction password is correct or not
+      //     if (transactionPassword != actualTransactionPw) {
+      //       toast.error("Incorrect Transaction Password", {
+      //         position: "top-right",
+      //         style: { width: "600px", height: "60px" },
+      //       });
+      //     }
+  
+      //     //For checking same user and destination Id
+      //     if (userID === destinationUserID) {
+      //       toast.error("Dest Id cannot be same as User Id", {
+      //         position: "top-right",
+      //         style: { width: "600px", height: "60px" },
+      //       });
+      //     }
+  
+      //     // Transaction failed, but no network error
+      //     // toast.error("Transaction Failed", {
+      //     //   position: "top-right",
+      //     //   style: { width: "400px", height: "100px" },
+      //     // });
+      //     setStatus("Failed");
+  
+      //     // Optional: Clear session or perform other actions on failure
+      //     sessionStorage.clear();
+      //     // navigate("/main/authenticate");
+      //   }
+      // }
+      // else{
+      //     toast.error("Transaction failed: Destination user does not exist or is null", {
+      //     position: "top-right",
+      //     style: { width: "400px", height: "100px" },
+      //   });
+      // }
+
+      
+      
+
+      // if (!response.ok) {
+      //   // Network-level error (non-200 status codes)
+      //   if (
+      //     json ===
+      //     '{"status":500,"error":"Cannot invoke \\"com.ezpay.entity.User.getIsBlockeListed()\\" because \\"destinationUser\\" is null"}'
+      //   ) {
+      //     toast.error(
+      //       "Transaction failed: Destination user does not exist or is null",
+      //       {
+      //         position: "top-right",
+      //         style: { width: "400px", height: "100px" },
+      //       }
+      //     );
+      //   } else {
+      //     toast.error(
+      //       json,
+      //       {
+      //         position: "top-right",
+      //         style: { width: "400px", height: "100px" },
+      //       }
+      //     );
+      //   }
+      // } else if (response.status === 201) {
+      //   // Transaction was successful
+      //   toast.success("Transaction Successful", {
+      //     position: "top-right",
+      //     style: { width: "600px", height: "60px" },
+      //   });
+      //   setStatus("Success");
+
+      //   // Clear form fields after successful submission
+      //   setAmount(0);
+      //   setDestinationUserID("");
+      //   setType("transfer");
+      //   setTransactionPassword("");
+
+      //   // Clear session and navigate to authentication
+      //   sessionStorage.clear();
+      //   navigate("/main/authenticate");
+      // } else if (response.status === 404) {
+      //   // Transaction failed, but no network error
+      //   toast.error("Transaction Failed", {
+      //     position: "top-right",
+      //     style: { width: "400px", height: "100px" },
+      //   });
+      //   setStatus("Failed");
+
+      //   // Optional: Clear session or perform other actions on failure
+      //   sessionStorage.clear();
+      //   navigate("/");
+      // } else {
+      //   // Handle unexpected messages from the backend
+      //   toast.error("Unexpected response: " + json, {
+      //     position: "top-right",
+      //     style: { width: "400px", height: "100px" },
+      //   });
+      // }
+  }catch (error) {
       // Network error (e.g., server unreachable)
       toast.error("Network Error: Unable to process the transaction", {
         position: "top-right",

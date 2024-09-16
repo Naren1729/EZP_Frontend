@@ -20,25 +20,25 @@ export default function NavBar() {
     }, 1000); // Delay to ensure routing happens first
   };
 
-  const handleLogout = () => {
-    const usertype = sessionStorage.getItem("usertype");
-    // Remove the session variables
-    sessionStorage.removeItem("username");
-    sessionStorage.removeItem("usertype");
-    sessionStorage.clear();
-    // Show a toast notification
-    toast.success("You have been logged out successfully.", {
-      position: "top-right",
-      style: { width: "400px", height: "80px" },
-    });
+  // const handleLogout = () => {
+  //   const usertype = sessionStorage.getItem("usertype");
+  //   // Remove the session variables
+  //   sessionStorage.removeItem("username");
+  //   sessionStorage.removeItem("usertype");
+  //   sessionStorage.clear();
+  //   // Show a toast notification
+  //   toast.success("You have been logged out successfully.", {
+  //     position: "top-right",
+  //     style: { width: "400px", height: "80px" },
+  //   });
 
-    // Redirect to the login page
-    navigate("/");
+  //   // Redirect to the login page
+  //   navigate("/");
 
-    setTimeout(() => {
-      window.location.reload(); // Force a page reload after navigation (optional, based on Code1)
-    }, 100);
-  };
+  //   setTimeout(() => {
+  //     window.location.reload(); // Force a page reload after navigation (optional, based on Code1)
+  //   }, 100);
+  // };
 
   // Check if the user is logged in by checking the session storage
   const isLoggedIn = sessionStorage.getItem("usertype");
@@ -53,7 +53,7 @@ export default function NavBar() {
             to="home"
             spy={true}
             smooth={true}
-            offset={-100}
+            offset={-150}
             duration={1000}
           >
             <span onClick={() => handleNavigation("home")}>Home</span>
@@ -94,7 +94,7 @@ export default function NavBar() {
         </li>
 
         {/* Conditionally render based on user type */}
-        {isLoggedInUser && (
+        {/*isLoggedInUser && (
           <li>
             <Link to="#">
               <span onClick={() => navigate("/main/userForm")}>Pay</span>
@@ -109,14 +109,14 @@ export default function NavBar() {
               </span>
             </Link>
           </li>
-        )}
-        {isLoggedIn && (
+        )*/}
+        {/*isLoggedIn && (
           <li>
             <Link to="#">
               <span onClick={handleLogout}>Logout</span>
             </Link>
           </li>
-        )}
+        )*/}
       </ul>
     </div>
   );
