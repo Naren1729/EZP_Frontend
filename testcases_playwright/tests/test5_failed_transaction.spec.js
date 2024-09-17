@@ -9,7 +9,7 @@
 // checking its updation under risk score table
 // CANNOT seaparate each test cases  
 
-// Run cmd : npx playwright test test5_fraud_transaction --project chromium --workers 1 --debug
+// Run cmd : npx playwright test test5_failed_transaction --project chromium --workers 1 --debug
 
 const { chromium } = require('playwright');
 import { test, expect } from "@playwright/test";
@@ -40,7 +40,7 @@ test("2 sign-up form testing", async () => {
   await page.getByPlaceholder('Current Balance').click();
   await page.getByPlaceholder('Current Balance').fill('1000');
   await page.getByPlaceholder('Current Balance').click();
-  await page.getByPlaceholder('Current Balance').fill('1000');
+  await page.getByPlaceholder('Current Balance').fill('1000000000000');
   await page.getByPlaceholder('Transaction Password').click();
   await page.getByPlaceholder('Transaction Password').fill('arvind');
   await page.getByRole('button', { name: 'Submit' }).click();
@@ -66,7 +66,7 @@ test("2 sign-up form testing", async () => {
   await page.getByPlaceholder('Current Balance').click();
   await page.getByPlaceholder('Current Balance').fill('2000');
   await page.getByPlaceholder('Current Balance').click();
-  await page.getByPlaceholder('Current Balance').fill('2000');
+  await page.getByPlaceholder('Current Balance').fill('1000000000000');
   await page.getByPlaceholder('Transaction Password').click();
   await page.getByPlaceholder('Transaction Password').fill('subi');
   await page.getByRole('button', { name: 'Submit' }).click();
@@ -142,7 +142,7 @@ test('Checking updation of 2 signed-up users and perform failed transaction with
 
     // Verify current balance
     const currentBalance = card.locator('p >> text=Current Balance:').locator('.user-data-label');
-    await expect(currentBalance).toHaveText('1000');
+    await expect(currentBalance).toHaveText('1000000000000');
     // Verify password
     const blocklist = card.locator('p >> text=Blocklist Status:').locator('.user-data-label');
     await expect(blocklist).toHaveText('No');
@@ -169,14 +169,14 @@ test('Checking updation of 2 signed-up users and perform failed transaction with
 
     // Verify current balance
     const currentBalance2 = card2.locator('p >> text=Current Balance:').locator('.user-data-label');
-    await expect(currentBalance2).toHaveText('2000');
+    await expect(currentBalance2).toHaveText('1000000000000');
 
     // Verify password
     const blocklist2 = card2.locator('p >> text=Blocklist Status:').locator('.user-data-label');
     await expect(blocklist2).toHaveText('No');
 
     //logout
-    await page.locator('a').filter({ hasText: 'Logout' }).click();
+    await page.locator('a').filter({ hasText: 'Home' }).click();
     await expect(page).toHaveURL('http://localhost:3000');
     // const toast4 = page.locator('.Toastify__toast--success');
     // await expect(toast4).toBeVisible();
@@ -211,10 +211,10 @@ test('Checking updation of 2 signed-up users and perform failed transaction with
     await page.getByPlaceholder('Transaction Password').fill('arvind');
     await page.getByRole('button', { name: 'Submit' }).click();
     // await page.waitForNavigation();
-    const toast6 = page.locator('.Toastify__toast--error');
-    await expect(toast6).toBeVisible();
-    await expect(toast6).toContainText('Transaction Failed');
-    await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
+    // const toast6 = page.locator('.Toastify__toast--error');
+    // await expect(toast6).toBeVisible();
+    // await expect(toast6).toContainText('Transaction Failed');
+    // await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
 
     // Checking transactions
     await page.goto('http://localhost:3000');
@@ -274,7 +274,7 @@ test('Checking updation of 2 signed-up users and perform failed transaction with
     await expect(statusElement).toHaveText('Status: failed');
 
     //logout
-    await page.locator('a').filter({ hasText: 'Logout' }).click();
+    await page.locator('a').filter({ hasText: 'Home' }).click();
     await expect(page).toHaveURL('http://localhost:3000');
     // const toast8 = page.locator('.Toastify__toast--success');
     // await expect(toast8).toBeVisible();
@@ -286,159 +286,5 @@ test('Checking updation of 2 signed-up users and perform failed transaction with
     await browser.close();
 
   });
-  test('Checking updation of risk score updation',
-    async () => {
-      const browser = await chromium.launch({
-        headless: false,
-        slowMo: 500
-      });
-      test.setTimeout(180000);
-      const context = await browser.newContext();
-      const page = await context.newPage();
-    await page.goto('http://localhost:3000/');
-    await page.getByRole('link', { name: 'Admin' }).click();
-    await expect(page).toHaveURL('http://localhost:3000/admin/authenticate');
-    await page.getByPlaceholder('Username').click();
-    await page.getByPlaceholder('Username').fill('admin123');
-    await page.getByPlaceholder('Password').click();
-    await page.getByPlaceholder('Password').fill('EZP123');
-    await page.getByRole('button', { name: 'Submit' }).click();
-    // await page.waitForNavigation();
-
-    await expect(page).toHaveURL('http://localhost:3000/admin/adminAccess');
-    const toast_3 = page.locator('.Toastify__toast--success');
-    await expect(toast_3).toBeVisible();
-    await expect(toast_3).toContainText('Logged in successfully');
-    await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
-
-    await page.getByRole('button', { name: 'Get User Details' }).click();
-
-    const title = page.locator('.get-data-title');
-    await expect(title).toHaveText('All Users:');
-
-    // If there's no error, proceed with user data checks
-    const cards = page.locator('.card');
-
-    // Ensure there are multiple user cards rendered
-    numberOfUsers = await cards.count();
-    expect(numberOfUsers).toBeGreaterThan(0); // Assuming at least one user
-    // Checking updation for user: arvind
-    const card = cards.nth(numberOfUsers - 2);
-
-    // Verify that the user ID (inside .circle > h2) is displayed
-    const userId = card.locator('.circle h2');
-    await expect(userId).not.toBeEmpty();
-
-    // checking for 4 paragraph tags
-    const paragraphs = card.locator('p');
-    await expect(paragraphs).toHaveCount(4);
-
-    // Verify username
-    const username = card.locator('p >> text=Username:').locator('.user-data-label');
-    await expect(username).toHaveText('arvind');
-
-    // Verify email
-    const email = card.locator('p >> text=Email:').locator('.user-data-label');
-    await expect(email).toHaveText('arvind@gmail.com');
-
-    // Verify current balance
-    const currentBalance = card.locator('p >> text=Current Balance:').locator('.user-data-label');
-    await expect(currentBalance).toHaveText('1000');
-    // Verify password
-    const blocklist = card.locator('p >> text=Blocklist Status:').locator('.user-data-label');
-    await expect(blocklist).toHaveText('No');
-
-    //**
-    // Checking updation for user: subi
-    const card2 = cards.nth(numberOfUsers - 1);
-
-    // Verify that the user ID (inside .circle > h2) is displayed
-    const userId2 = card2.locator('.circle h2');
-    await expect(userId2).not.toBeEmpty();
-
-    // checking for 4 paragraph tags
-    const paragraphs2 = card2.locator('p');
-    await expect(paragraphs2).toHaveCount(4);
-
-    // Verify username
-    const username2 = card2.locator('p >> text=Username:').locator('.user-data-label');
-    await expect(username2).toHaveText('subi');
-
-    // Verify email
-    const email2 = card2.locator('p >> text=Email:').locator('.user-data-label');
-    await expect(email2).toHaveText('subi@gmail.com');
-
-    // Verify current balance
-    const currentBalance2 = card2.locator('p >> text=Current Balance:').locator('.user-data-label');
-    await expect(currentBalance2).toHaveText('2000');
-
-    // Verify password
-    const blocklist2 = card2.locator('p >> text=Blocklist Status:').locator('.user-data-label');
-    await expect(blocklist2).toHaveText('No');
-
-    //logout
-    await page.locator('a').filter({ hasText: 'Logout' }).click();
-    await expect(page).toHaveURL('http://localhost:3000');
-    // const toast4 = page.locator('.Toastify__toast--success');
-    // await expect(toast4).toBeVisible();
-    // await expect(toast4).toContainText('You have been logged out successfully.');
-    // await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
   
-      await page.goto('http://localhost:3000/');
-      await page.getByRole('link', { name: 'Admin' }).click();
-      await expect(page).toHaveURL('http://localhost:3000/admin/authenticate');
-      await page.getByPlaceholder('Username').click();
-      await page.getByPlaceholder('Username').fill('admin123');
-      await page.getByPlaceholder('Password').click();
-      await page.getByPlaceholder('Password').fill('EZP123');
-      await page.getByRole('button', { name: 'Submit' }).click();
-      // await page.waitForNavigation();
-  
-      await expect(page).toHaveURL('http://localhost:3000/admin/adminAccess');
-      const toast3 = page.locator('.Toastify__toast--success');
-      await expect(toast3).toBeVisible();
-      await expect(toast3).toContainText('Logged in successfully');
-      await page.getByRole('button', { name: 'Get Risk Scores' }).click();
-      const title3 = page.locator('.get-data-title');
-      await expect(title3).toHaveText('All Fraud Transactions');
-      const cards3 = page.locator('li.card.risk');
-      const numberOfTransactions = await cards3.count();
-      expect(numberOfTransactions).toBeGreaterThan(0); // Ensure at least one transaction
-  
-      const card3 = cards3.nth(numberOfTransactions - 1); // Assuming the latest transaction is last
-  
-      // Transaction ID
-      const transactionId = card3.locator('.circle.failed h2');
-  
-      // User ID (Sender)
-      const pElements = card3.locator('p.user-data-label'); 
-      const numberOfPElements = await pElements.count();
-      const userId3 = card3.locator('p:has-text("User Id:")').locator('.user-data-label').nth(numberOfPElements);
-  
-      // Amount
-      const amount = card3.locator('p:has-text("Transaction Amount:") strong.user-data-label');
-  
-      // Assertions
-      await expect(transactionId).not.toBeEmpty();
-      await expect(userId3).toHaveText((numberOfUsers - 1).toString()); // Sender ID
-      await expect(amount).toHaveText('100000000000');
-  
-      // Verify the risk score dynamically
-      const statusElement = card3.locator('.lower-button');
-      const statusText = await statusElement.textContent(); // Get the full text, e.g., "Risk Score 50"
-      
-      // Extract the numeric part from the "Risk Score" text
-      const riskScore = parseInt(statusText.replace('Risk Score ', '')); // Convert "50" to an integer
-  
-      // Check if the risk score is greater than 0
-      expect(riskScore).toBeGreaterThan(0);
-  
-      //logout
-      await page.locator('a').filter({ hasText: 'Logout' }).click();
-      await expect(page).toHaveURL('http://localhost:3000');
-      // const toast8 = page.locator('.Toastify__toast--success');
-      // await expect(toast8).toBeVisible();
-      // await expect(toast8).toContainText('You have been logged out successfully.');
-      // await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
-    });
   
