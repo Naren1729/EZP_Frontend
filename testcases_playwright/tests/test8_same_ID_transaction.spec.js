@@ -126,7 +126,9 @@ test('Checking updation of single signed-up user and perform failed transaction 
 
     //User Login - arvind
     await page.locator('div').filter({ hasText: /^User$/ }).click();
+    // await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
     await expect(page).toHaveURL('http://localhost:3000/main/authenticate');
+    // await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
     await page.getByPlaceholder('Username').click();
     await page.getByPlaceholder('Username').fill('arvind0123');
     await page.getByPlaceholder('Password').click();
