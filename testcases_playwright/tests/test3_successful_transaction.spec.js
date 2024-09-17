@@ -174,7 +174,7 @@ test ('Checking updation of 2 signed-up users and perform transaction with verif
           await expect(blocklist2).toHaveText('No');
 
           //logout
-          await page.locator('a').filter({ hasText: 'Logout' }).click();
+          await page.locator('a').filter({ hasText: 'Home' }).click();
           await expect(page).toHaveURL('http://localhost:3000');
           // const toast4 = page.locator('.Toastify__toast--success');
           // await expect(toast4).toBeVisible();
@@ -184,7 +184,9 @@ test ('Checking updation of 2 signed-up users and perform transaction with verif
 
           //User Login - mithun
           await page.locator('div').filter({ hasText: /^User$/ }).click();
+          // await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
           await expect(page).toHaveURL('http://localhost:3000/main/authenticate');
+          // await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
           await page.getByPlaceholder('Username').click();
           await page.getByPlaceholder('Username').fill('mithun');
           await page.getByPlaceholder('Password').click();
@@ -272,7 +274,7 @@ test ('Checking updation of 2 signed-up users and perform transaction with verif
     await expect(statusElement).toHaveText('Status: Success');
     
     //logout
-    await page.locator('a').filter({ hasText: 'Logout' }).click();
+    await page.locator('a').filter({ hasText: 'Home' }).click();
     await expect(page).toHaveURL('http://localhost:3000');
     // const toast8 = page.locator('.Toastify__toast--success');
     // await expect(toast8).toBeVisible();

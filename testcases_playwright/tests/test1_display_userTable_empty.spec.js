@@ -47,7 +47,7 @@ const errorMessage1 = page.locator('text=Error: Network response was not ok');  
 await expect(errorMessage1).toBeVisible();  // Asserts that the error message is shown when the table is empty
 
 // Logging out of the admin interface
-await page.locator('a').filter({ hasText: 'Logout' }).click();
+await page.locator('a').filter({ hasText: 'Home' }).click();
 await expect(page).toHaveURL('http://localhost:3000');  // Verifies redirection to the homepage
 // const toast4 = page.locator('.Toastify__toast--success');  // Verifies the "logged out successfully" message
 // await expect(toast4).toBeVisible();  // Ensures the success message is visible
@@ -94,7 +94,7 @@ const errorMessage2 = page.locator('text=Error: Network response was not ok');  
 await expect(errorMessage2).toBeVisible();  // Asserts that the error message appears for empty transaction details
 
 // Logging out of the admin panel
-await page.locator('a').filter({ hasText: 'Logout' }).click();
+await page.locator('a').filter({ hasText: 'Home' }).click();
 await expect(page).toHaveURL('http://localhost:3000');  // Confirms redirection to the homepage
 // const toast4 = page.locator('.Toastify__toast--success');  // Verifies logout success message
 // await expect(toast4).toBeVisible();  // Ensures the success message is visible
@@ -141,7 +141,7 @@ const errorMessage3 = page.locator('text=Error: Network response was not ok');  
 await expect(errorMessage3).toBeVisible();  // Asserts that the error message is shown for the empty table
 
 // Logging out of the admin interface
-await page.locator('a').filter({ hasText: 'Logout' }).click();
+await page.locator('a').filter({ hasText: 'Home' }).click();
 await expect(page).toHaveURL('http://localhost:3000');  // Verifies redirection to the homepage after logout
 // const toast4 = page.locator('.Toastify__toast--success');  // Confirms logout success message
 // await expect(toast4).toBeVisible();  // Ensures the success toast is visible

@@ -120,13 +120,15 @@ test('Checking updation of single signed-up user and perform failed transaction 
     await expect(blocklist).toHaveText('No');
 
     //logout
-    await page.locator('a').filter({ hasText: 'Logout' }).click();
+    await page.locator('a').filter({ hasText: 'Home' }).click();
     await expect(page).toHaveURL('http://localhost:3000');
 
 
     //User Login - arvind
     await page.locator('div').filter({ hasText: /^User$/ }).click();
+    // await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
     await expect(page).toHaveURL('http://localhost:3000/main/authenticate');
+    // await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
     await page.getByPlaceholder('Username').click();
     await page.getByPlaceholder('Username').fill('arvind0123');
     await page.getByPlaceholder('Password').click();
@@ -153,7 +155,7 @@ test('Checking updation of single signed-up user and perform failed transaction 
     // await page.waitForNavigation();
     const toast6 = page.locator('.Toastify__toast--error');
     await expect(toast6).toBeVisible();
-    await expect(toast6).toContainText('Transaction Failed');
+    await expect(toast6).toContainText('Dest Id cannot be same as User Id');
     await page.waitForTimeout(6000); // Adjust timeout based on the autoClose time
 
     // ---------------------

@@ -151,7 +151,7 @@ test('Checking updation of signed-up user data under admin - Get User Data', asy
   await expect(blocklistStatus).toHaveText('No');
 
   // Log out as the admin
-  await page.locator('a').filter({ hasText: 'Logout' }).click();
+  await page.locator('a').filter({ hasText: 'Home' }).click();
   await expect(page).toHaveURL('http://localhost:3000');
   // const toast3 = page.locator('.Toastify__toast--success');
   // await expect(toast3).toBeVisible();
