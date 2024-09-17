@@ -122,7 +122,7 @@ test('Checking updation of signed-up user data under admin - Get User Data', asy
   await expect(password).toHaveText('No');  // Verifies the blocklist status is set to "No"
 
   // Logging out from the admin panel
-  await page.locator('a').filter({ hasText: 'Logout' }).click();
+  await page.locator('a').filter({ hasText: 'Home' }).click();
   await expect(page).toHaveURL('http://localhost:3000');  // Verifies redirection to homepage after logout
   // const toast3 = page.locator('.Toastify__toast--success');  // Verifies logout success message
   // await expect(toast3).toBeVisible();  // Ensures the logout success message is visible
