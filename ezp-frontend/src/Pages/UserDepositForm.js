@@ -207,23 +207,6 @@ export default function UserDepositForm() {
             />
           </div>
           
-          {/* Blocklisted field */}
-          {/* <div className="deposit-form-group">
-            <label htmlFor="isBlockListed" className="form-label">
-              Blocklisted
-            </label>
-            <select
-              id="isBlockListed"
-              value={isBlockListed}
-              onChange={(e) => setIsBlockListed(e.target.value === "true")}
-              className="form-select"
-              required
-            >
-              <option value="false">No</option>
-              <option value="true">Yes</option>
-            </select>
-          </div> */}
-          
           {/* Transaction Password field */}
           <div className="deposit-form-group">
             <label htmlFor="transactionPassword" className="form-label">

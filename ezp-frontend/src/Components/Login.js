@@ -20,46 +20,10 @@ export default function Login(props) {
   const username = sessionStorage.getItem("username"); // Retrieve username from session storage
   const usertype = sessionStorage.getItem("usertype"); // Retrieve usertype from session storage
 
-  // Effect to handle redirection if user is already logged in
-  // useEffect(() => {
-  //   if ((username || usertype) && usertype === "user") {
-  //     toast.success("Already Logged In as user", {
-  //       position: "top-right",
-  //       style: { width: "400px", height: "60px" },
-  //     });
-  //     navigate("/main/userForm"); // Redirect to user form if already logged in as user
-  //   } else if ((username || usertype) && usertype === "admin") {
-  //     toast.success("Already Logged In as admin", {
-  //       position: "top-right",
-  //       style: { width: "400px", height: "60px" },
-  //     });
-  //     navigate("/admin/adminAccess"); // Redirect to admin access if already logged in as admin
-  //   }
-  // }, [navigate, username, usertype]);
-
-  // Validation function to check if both fields are filled
-  // const validateForm = () => {
-  //   if (!userNameRef.current.value || !passwordRef.current.value) {
-  //     setError("Both fields are required"); // Set error if fields are empty
-  //     return false;
-  //   }
-  //   setError(null); // Reset error if validation passes
-  //   return true;
-  // };
-
 
   // Method to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
-
-    //No need of validateForm, as "required keyword" already used in HTML
-    // if (!validateForm()) {
-    //   toast.error("Please fill in both fields", {
-    //     position: "top-right",
-    //     style: { width: "400px", height: "60px" },
-    //   });
-    //   return;
-    // }
 
     try {
       const response = await fetch(`${apiUrl}/authenticate`, {

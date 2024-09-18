@@ -92,31 +92,6 @@ export default function NavBar() {
             <span onClick={() => handleNavigation("team")}>Our Team</span>
           </Link>
         </li>
-
-        {/* Conditionally render based on user type */}
-        {/*isLoggedInUser && (
-          <li>
-            <Link to="#">
-              <span onClick={() => navigate("/main/userForm")}>Pay</span>
-            </Link>
-          </li>
-        )}
-        {isLoggedInAdmin && (
-          <li>
-            <Link to="#">
-              <span onClick={() => navigate("/admin/adminAccess")}>
-                Admin Panel
-              </span>
-            </Link>
-          </li>
-        )*/}
-        {/*isLoggedIn && (
-          <li>
-            <Link to="#">
-              <span onClick={handleLogout}>Logout</span>
-            </Link>
-          </li>
-        )*/}
       </ul>
     </div>
   );
