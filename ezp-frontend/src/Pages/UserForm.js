@@ -84,6 +84,7 @@ export default function UserForm() {
       return false;
     }
 
+    //If destination Id doesnot exist
     if (destinationUserID === null) {
           console.log(e.json);
           toast.error(
@@ -113,6 +114,7 @@ export default function UserForm() {
       return false;
     }
 
+    //Checking that a single transaction cannot exceed 100000
     if(amount >= 100000){
       toast.error("Maximum amount exceeded", {
         position: "top-right",
@@ -120,12 +122,11 @@ export default function UserForm() {
       });
       return false;
     }
-    
+
     setStatus("Failed");
 
     // Optional: Clear session or perform other actions on failure
     sessionStorage.clear();
-    // navigate("/main/authenticate");
     return true;
   }
 

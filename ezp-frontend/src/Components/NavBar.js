@@ -20,31 +20,6 @@ export default function NavBar() {
     }, 1000); // Delay to ensure routing happens first
   };
 
-  // const handleLogout = () => {
-  //   const usertype = sessionStorage.getItem("usertype");
-  //   // Remove the session variables
-  //   sessionStorage.removeItem("username");
-  //   sessionStorage.removeItem("usertype");
-  //   sessionStorage.clear();
-  //   // Show a toast notification
-  //   toast.success("You have been logged out successfully.", {
-  //     position: "top-right",
-  //     style: { width: "400px", height: "80px" },
-  //   });
-
-  //   // Redirect to the login page
-  //   navigate("/");
-
-  //   setTimeout(() => {
-  //     window.location.reload(); // Force a page reload after navigation (optional, based on Code1)
-  //   }, 100);
-  // };
-
-  // Check if the user is logged in by checking the session storage
-  const isLoggedIn = sessionStorage.getItem("usertype");
-  const isLoggedInUser = sessionStorage.getItem("usertype") === "user";
-  const isLoggedInAdmin = sessionStorage.getItem("usertype") === "admin";
-
   return (
     <div className="nav-bar">
       <ul className="nav-items">
